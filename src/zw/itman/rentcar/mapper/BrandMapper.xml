@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="zw.itman.rentcar.dao.BrandMapper" >
+  <resultMap id="BaseResultMap" type="zw.itman.rentcar.pojo.Brand" >
+    <id column="brandid" property="brandid" jdbcType="VARCHAR" />
+    <result column="brandname" property="brandname" jdbcType="VARCHAR" />
+    <result column="image" property="image" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    brandid, brandname, image
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from brand
+    where brandid = #{brandid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from brand
+    where brandid = #{brandid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="zw.itman.rentcar.pojo.Brand" >
+    insert into brand (brandid, brandname, image
+      )
+    values (#{brandid,jdbcType=VARCHAR}, #{brandname,jdbcType=VARCHAR}, #{image,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="zw.itman.rentcar.pojo.Brand" >
+    insert into brand
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="brandid != null" >
+        brandid,
+      </if>
+      <if test="brandname != null" >
+        brandname,
+      </if>
+      <if test="image != null" >
+        image,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="brandid != null" >
+        #{brandid,jdbcType=VARCHAR},
+      </if>
+      <if test="brandname != null" >
+        #{brandname,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null" >
+        #{image,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="zw.itman.rentcar.pojo.Brand" >
+    update brand
+    <set >
+      <if test="brandname != null" >
+        brandname = #{brandname,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null" >
+        image = #{image,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where brandid = #{brandid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="zw.itman.rentcar.pojo.Brand" >
+    update brand
+    set brandname = #{brandname,jdbcType=VARCHAR},
+      image = #{image,jdbcType=VARCHAR}
+    where brandid = #{brandid,jdbcType=VARCHAR}
+  </update>
+  
+  <select id="allBrand" resultMap="BaseResultMap">
+    select * from brand
+  </select>
+  <select id="count" resultType="java.lang.Integer">
+
+    select count(*) from brand
+  </select>
+  <select id="findAllPage" resultType="zw.itman.rentcar.pojo.Brand">
+    select * from brand  limit #{offset}, #{limit}
+  </select>
+</mapper>

@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="zw.itman.rentcar.dao.CarsMapper" >
+  <resultMap id="BaseResultMap" type="zw.itman.rentcar.pojo.Cars" >
+    <id column="carsid" property="carsid" jdbcType="VARCHAR" />
+    <result column="carno" property="carno" jdbcType="VARCHAR" />
+    <result column="image" property="image" jdbcType="VARCHAR" />
+    <result column="cateid" property="cateid" jdbcType="VARCHAR" />
+    <result column="brandid" property="brandid" jdbcType="VARCHAR" />
+    <result column="price" property="price" jdbcType="VARCHAR" />
+    <result column="colour" property="colour" jdbcType="VARCHAR" />
+    <result column="degree" property="degree" jdbcType="VARCHAR" />
+    <result column="displacement" property="displacement" jdbcType="VARCHAR" />
+    <result column="special" property="special" jdbcType="VARCHAR" />
+    <result column="recommend" property="recommend" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="zw.itman.rentcar.pojo.Cars" extends="BaseResultMap" >
+    <result column="contents" property="contents" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <resultMap id="CarsCateBrandMap" type="zw.itman.rentcar.dto.CarsCateBrandDto">
+    <id column="carsid" property="carsid" javaType="java.lang.String" jdbcType="VARCHAR"/>
+    <result column="carno" property="carno" javaType="java.lang.String" jdbcType="VARCHAR"/>
+    <result column="image" property="image" javaType="java.lang.String" jdbcType="VARCHAR"/>
+    <result column="cateid" property="cateid" javaType="java.lang.String" jdbcType="VARCHAR"/>
+    <result column="brandid" property="brandid" javaType="java.lang.String" jdbcType="VARCHAR"/>
+    <result column="price" property="price" javaType="java.lang.String" jdbcType="VARCHAR"/>
+    <result column="colour" property="colour" javaType="java.lang.String" jdbcType="VARCHAR"/>
+    <result column="degree" property="degree" javaType="java.lang.String" jdbcType="VARCHAR"/>
+    <result column="displacement" property="displacement" javaType="java.lang.String" jdbcType="VARCHAR"/>
+    <result column="special" property="special" javaType="java.lang.String" jdbcType="VARCHAR"/>
+    <result column="recommend" property="recommend" javaType="java.lang.String" jdbcType="VARCHAR"/>
+    <result column="catename" property="catename" javaType="java.lang.String" jdbcType="VARCHAR"/>
+    <result column="brandname" property="brandname" javaType="java.lang.String" jdbcType="VARCHAR"/>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    carsid, carno, image, cateid, brandid, price, colour, degree, displacement, special, 
+    recommend
+  </sql>
+  <sql id="Blob_Column_List" >
+    contents
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from cars
+    where carsid = #{carsid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from cars
+    where carsid = #{carsid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="zw.itman.rentcar.pojo.Cars" >
+    insert into cars (carsid, carno, image, 
+      cateid, brandid, price, 
+      colour, degree, displacement, 
+      special, recommend, contents
+      )
+    values (#{carsid,jdbcType=VARCHAR}, #{carno,jdbcType=VARCHAR}, #{image,jdbcType=VARCHAR}, 
+      #{cateid,jdbcType=VARCHAR}, #{brandid,jdbcType=VARCHAR}, #{price,jdbcType=VARCHAR}, 
+      #{colour,jdbcType=VARCHAR}, #{degree,jdbcType=VARCHAR}, #{displacement,jdbcType=VARCHAR}, 
+      #{special,jdbcType=VARCHAR}, #{recommend,jdbcType=VARCHAR}, #{contents,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="zw.itman.rentcar.pojo.Cars" >
+    insert into cars
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="carsid != null" >
+        carsid,
+      </if>
+      <if test="carno != null" >
+        carno,
+      </if>
+      <if test="image != null" >
+        image,
+      </if>
+      <if test="cateid != null" >
+        cateid,
+      </if>
+      <if test="brandid != null" >
+        brandid,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="colour != null" >
+        colour,
+      </if>
+      <if test="degree != null" >
+        degree,
+      </if>
+      <if test="displacement != null" >
+        displacement,
+      </if>
+      <if test="special != null" >
+        special,
+      </if>
+      <if test="recommend != null" >
+        recommend,
+      </if>
+      <if test="contents != null" >
+        contents,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="carsid != null" >
+        #{carsid,jdbcType=VARCHAR},
+      </if>
+      <if test="carno != null" >
+        #{carno,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null" >
+        #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="cateid != null" >
+        #{cateid,jdbcType=VARCHAR},
+      </if>
+      <if test="brandid != null" >
+        #{brandid,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=VARCHAR},
+      </if>
+      <if test="colour != null" >
+        #{colour,jdbcType=VARCHAR},
+      </if>
+      <if test="degree != null" >
+        #{degree,jdbcType=VARCHAR},
+      </if>
+      <if test="displacement != null" >
+        #{displacement,jdbcType=VARCHAR},
+      </if>
+      <if test="special != null" >
+        #{special,jdbcType=VARCHAR},
+      </if>
+      <if test="recommend != null" >
+        #{recommend,jdbcType=VARCHAR},
+      </if>
+      <if test="contents != null" >
+        #{contents,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="zw.itman.rentcar.pojo.Cars" >
+    update cars
+    <set >
+      <if test="carno != null" >
+        carno = #{carno,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null" >
+        image = #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="cateid != null" >
+        cateid = #{cateid,jdbcType=VARCHAR},
+      </if>
+      <if test="brandid != null" >
+        brandid = #{brandid,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=VARCHAR},
+      </if>
+      <if test="colour != null" >
+        colour = #{colour,jdbcType=VARCHAR},
+      </if>
+      <if test="degree != null" >
+        degree = #{degree,jdbcType=VARCHAR},
+      </if>
+      <if test="displacement != null" >
+        displacement = #{displacement,jdbcType=VARCHAR},
+      </if>
+      <if test="special != null" >
+        special = #{special,jdbcType=VARCHAR},
+      </if>
+      <if test="recommend != null" >
+        recommend = #{recommend,jdbcType=VARCHAR},
+      </if>
+      <if test="contents != null" >
+        contents = #{contents,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where carsid = #{carsid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="zw.itman.rentcar.pojo.Cars" >
+    update cars
+    set carno = #{carno,jdbcType=VARCHAR},
+      image = #{image,jdbcType=VARCHAR},
+      cateid = #{cateid,jdbcType=VARCHAR},
+      brandid = #{brandid,jdbcType=VARCHAR},
+      price = #{price,jdbcType=VARCHAR},
+      colour = #{colour,jdbcType=VARCHAR},
+      degree = #{degree,jdbcType=VARCHAR},
+      displacement = #{displacement,jdbcType=VARCHAR},
+      special = #{special,jdbcType=VARCHAR},
+      recommend = #{recommend,jdbcType=VARCHAR},
+      contents = #{contents,jdbcType=LONGVARCHAR}
+    where carsid = #{carsid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="zw.itman.rentcar.pojo.Cars" >
+    update cars
+    set carno = #{carno,jdbcType=VARCHAR},
+      image = #{image,jdbcType=VARCHAR},
+      cateid = #{cateid,jdbcType=VARCHAR},
+      brandid = #{brandid,jdbcType=VARCHAR},
+      price = #{price,jdbcType=VARCHAR},
+      colour = #{colour,jdbcType=VARCHAR},
+      degree = #{degree,jdbcType=VARCHAR},
+      displacement = #{displacement,jdbcType=VARCHAR},
+      special = #{special,jdbcType=VARCHAR},
+      recommend = #{recommend,jdbcType=VARCHAR}
+    where carsid = #{carsid,jdbcType=VARCHAR}
+  </update>
+  <select id="count" resultType="java.lang.Integer">
+    select count(*) from cars
+  </select>
+
+  <select id="findAllPage" resultMap="CarsCateBrandMap">
+    select cs.*,ct.catename,bd.brandname from cars cs
+    left join cate ct on cs.cateid=ct.cateid
+    left join brand bd on cs.brandid=bd.brandid
+    limit #{offset},#{limit}
+  </select>
+</mapper>

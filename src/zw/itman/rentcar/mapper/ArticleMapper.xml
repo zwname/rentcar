@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="zw.itman.rentcar.dao.ArticleMapper" >
+  <resultMap id="BaseResultMap" type="zw.itman.rentcar.pojo.Article" >
+    <id column="articleid" property="articleid" jdbcType="VARCHAR" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="addtime" property="addtime" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="zw.itman.rentcar.pojo.Article" extends="BaseResultMap" >
+    <result column="contents" property="contents" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    articleid, title, addtime
+  </sql>
+  <sql id="Blob_Column_List" >
+    contents
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from article
+    where articleid = #{articleid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from article
+    where articleid = #{articleid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="zw.itman.rentcar.pojo.Article" >
+    insert into article (articleid, title, addtime, 
+      contents)
+    values (#{articleid,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{addtime,jdbcType=VARCHAR}, 
+      #{contents,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="zw.itman.rentcar.pojo.Article" >
+    insert into article
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="articleid != null" >
+        articleid,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="addtime != null" >
+        addtime,
+      </if>
+      <if test="contents != null" >
+        contents,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="articleid != null" >
+        #{articleid,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="addtime != null" >
+        #{addtime,jdbcType=VARCHAR},
+      </if>
+      <if test="contents != null" >
+        #{contents,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="zw.itman.rentcar.pojo.Article" >
+    update article
+    <set >
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="addtime != null" >
+        addtime = #{addtime,jdbcType=VARCHAR},
+      </if>
+      <if test="contents != null" >
+        contents = #{contents,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where articleid = #{articleid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="zw.itman.rentcar.pojo.Article" >
+    update article
+    set title = #{title,jdbcType=VARCHAR},
+      addtime = #{addtime,jdbcType=VARCHAR},
+      contents = #{contents,jdbcType=LONGVARCHAR}
+    where articleid = #{articleid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="zw.itman.rentcar.pojo.Article" >
+    update article
+    set title = #{title,jdbcType=VARCHAR},
+      addtime = #{addtime,jdbcType=VARCHAR}
+    where articleid = #{articleid,jdbcType=VARCHAR}
+  </update>
+  
+  <select id="count" resultType="java.lang.Integer">
+  select count(*) from article
+  </select>
+  <select id="findAllPage" resultMap="BaseResultMap">
+  select * from article limit #{offset},#{limit}
+  </select>
+</mapper>

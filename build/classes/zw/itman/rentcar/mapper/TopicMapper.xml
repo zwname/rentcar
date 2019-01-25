@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="zw.itman.rentcar.dao.TopicMapper" >
+  <resultMap id="BaseResultMap" type="zw.itman.rentcar.pojo.Topic" >
+    <id column="topicid" property="topicid" jdbcType="VARCHAR" />
+    <result column="usersid" property="usersid" jdbcType="VARCHAR" />
+    <result column="carsid" property="carsid" jdbcType="VARCHAR" />
+    <result column="num" property="num" jdbcType="VARCHAR" />
+    <result column="addtime" property="addtime" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="zw.itman.rentcar.pojo.Topic" extends="BaseResultMap" >
+    <result column="contents" property="contents" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <resultMap id="UserTopicCar" type="zw.itman.rentcar.dto.UserTopicCarsDto">
+    <id column="topicid" jdbcType="VARCHAR" javaType="java.lang.String" property="topicid"/>
+    <result column="usersid" jdbcType="VARCHAR" javaType="java.lang.String" property="usersid" />
+    <result column="carsid" jdbcType="VARCHAR" javaType="java.lang.String" property="carsid"/>
+    <result column="carno" jdbcType="VARCHAR" javaType="java.lang.String" property="carno"/>
+    <result column="username" jdbcType="VARCHAR" javaType="java.lang.String" property="username"/>
+    <result column="num" jdbcType="VARCHAR" javaType="java.lang.String" property="num"/>
+    <result column="addtime" jdbcType="VARCHAR" javaType="java.lang.String" property="addtime"/>
+    <result column="contents" jdbcType="VARCHAR" javaType="java.lang.String" property="contents"/>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    topicid, usersid, carsid, num, addtime
+  </sql>
+  <sql id="Blob_Column_List" >
+    contents
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from topic
+    where topicid = #{topicid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from topic
+    where topicid = #{topicid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="zw.itman.rentcar.pojo.Topic" >
+    insert into topic (topicid, usersid, carsid, 
+      num, addtime, contents
+      )
+    values (#{topicid,jdbcType=VARCHAR}, #{usersid,jdbcType=VARCHAR}, #{carsid,jdbcType=VARCHAR}, 
+      #{num,jdbcType=VARCHAR}, #{addtime,jdbcType=VARCHAR}, #{contents,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="zw.itman.rentcar.pojo.Topic" >
+    insert into topic
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="topicid != null" >
+        topicid,
+      </if>
+      <if test="usersid != null" >
+        usersid,
+      </if>
+      <if test="carsid != null" >
+        carsid,
+      </if>
+      <if test="num != null" >
+        num,
+      </if>
+      <if test="addtime != null" >
+        addtime,
+      </if>
+      <if test="contents != null" >
+        contents,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="topicid != null" >
+        #{topicid,jdbcType=VARCHAR},
+      </if>
+      <if test="usersid != null" >
+        #{usersid,jdbcType=VARCHAR},
+      </if>
+      <if test="carsid != null" >
+        #{carsid,jdbcType=VARCHAR},
+      </if>
+      <if test="num != null" >
+        #{num,jdbcType=VARCHAR},
+      </if>
+      <if test="addtime != null" >
+        #{addtime,jdbcType=VARCHAR},
+      </if>
+      <if test="contents != null" >
+        #{contents,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="zw.itman.rentcar.pojo.Topic" >
+    update topic
+    <set >
+      <if test="usersid != null" >
+        usersid = #{usersid,jdbcType=VARCHAR},
+      </if>
+      <if test="carsid != null" >
+        carsid = #{carsid,jdbcType=VARCHAR},
+      </if>
+      <if test="num != null" >
+        num = #{num,jdbcType=VARCHAR},
+      </if>
+      <if test="addtime != null" >
+        addtime = #{addtime,jdbcType=VARCHAR},
+      </if>
+      <if test="contents != null" >
+        contents = #{contents,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where topicid = #{topicid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="zw.itman.rentcar.pojo.Topic" >
+    update topic
+    set usersid = #{usersid,jdbcType=VARCHAR},
+      carsid = #{carsid,jdbcType=VARCHAR},
+      num = #{num,jdbcType=VARCHAR},
+      addtime = #{addtime,jdbcType=VARCHAR},
+      contents = #{contents,jdbcType=LONGVARCHAR}
+    where topicid = #{topicid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="zw.itman.rentcar.pojo.Topic" >
+    update topic
+    set usersid = #{usersid,jdbcType=VARCHAR},
+      carsid = #{carsid,jdbcType=VARCHAR},
+      num = #{num,jdbcType=VARCHAR},
+      addtime = #{addtime,jdbcType=VARCHAR}
+    where topicid = #{topicid,jdbcType=VARCHAR}
+  </update>
+
+   <select id="count" resultType="java.lang.Integer">
+    select count(*) from topic
+  </select>
+
+  <select id="findAllPage" resultMap="UserTopicCar">
+    select t.topicid,t.num,t.addtime,t.contents,u.username,c.carno from topic t left join users u on t.usersid=u.usersid
+    left join cars c on t.carsid=c.carsid
+    limit #{offset},#{limit}
+
+  </select>
+</mapper>

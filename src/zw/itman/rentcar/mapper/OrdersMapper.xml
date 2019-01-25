@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="zw.itman.rentcar.dao.OrdersMapper" >
+  <resultMap id="BaseResultMap" type="zw.itman.rentcar.pojo.Orders" >
+    <id column="ordersid" property="ordersid" jdbcType="VARCHAR" />
+    <result column="ordercode" property="ordercode" jdbcType="VARCHAR" />
+    <result column="usersid" property="usersid" jdbcType="VARCHAR" />
+    <result column="carsid" property="carsid" jdbcType="VARCHAR" />
+    <result column="thestart" property="thestart" jdbcType="VARCHAR" />
+    <result column="theend" property="theend" jdbcType="VARCHAR" />
+    <result column="place" property="place" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="addtime" property="addtime" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="money" property="money" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap type="zw.itman.rentcar.dto.UsersOrdersCarsDto" id="UsersOrdersCarsDto">
+  	<id column="ordersid" property="ordersid" jdbcType="VARCHAR" />
+    <result column="ordercode" property="ordercode" jdbcType="VARCHAR" />
+    <result column="usersid" property="usersid" jdbcType="VARCHAR" />
+    <result column="carsid" property="carsid" jdbcType="VARCHAR" />
+    <result column="thestart" property="thestart" jdbcType="VARCHAR" />
+    <result column="theend" property="theend" jdbcType="VARCHAR" />
+    <result column="place" property="place" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="addtime" property="addtime" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="money" property="money" jdbcType="VARCHAR" />
+    <!--用户  -->
+     <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="realname" property="realname" jdbcType="VARCHAR" />
+    <result column="contact" property="contact" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="VARCHAR" />
+    <result column="idcard" property="idcard" jdbcType="VARCHAR" />
+   <!--  <result column="address" property="address2" jdbcType="VARCHAR" /> -->
+   <!-- 车辆 -->
+    <result column="carno" property="carno" jdbcType="VARCHAR" />
+    <result column="price" property="price" jdbcType="VARCHAR" />
+    <result column="displacement" property="displacement" jdbcType="VARCHAR" />
+    <result column="image" property="image" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ordersid, ordercode, usersid, carsid, thestart, theend, place, address, addtime, 
+    status, money
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from orders
+    where ordersid = #{ordersid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from orders
+    where ordersid = #{ordersid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="zw.itman.rentcar.pojo.Orders" >
+    insert into orders (ordersid, ordercode, usersid, 
+      carsid, thestart, theend, 
+      place, address, addtime, 
+      status, money)
+    values (#{ordersid,jdbcType=VARCHAR}, #{ordercode,jdbcType=VARCHAR}, #{usersid,jdbcType=VARCHAR}, 
+      #{carsid,jdbcType=VARCHAR}, #{thestart,jdbcType=VARCHAR}, #{theend,jdbcType=VARCHAR}, 
+      #{place,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{addtime,jdbcType=VARCHAR}, 
+      #{status,jdbcType=VARCHAR}, #{money,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="zw.itman.rentcar.pojo.Orders" >
+    insert into orders
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="ordersid != null" >
+        ordersid,
+      </if>
+      <if test="ordercode != null" >
+        ordercode,
+      </if>
+      <if test="usersid != null" >
+        usersid,
+      </if>
+      <if test="carsid != null" >
+        carsid,
+      </if>
+      <if test="thestart != null" >
+        thestart,
+      </if>
+      <if test="theend != null" >
+        theend,
+      </if>
+      <if test="place != null" >
+        place,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="addtime != null" >
+        addtime,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="money != null" >
+        money,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="ordersid != null" >
+        #{ordersid,jdbcType=VARCHAR},
+      </if>
+      <if test="ordercode != null" >
+        #{ordercode,jdbcType=VARCHAR},
+      </if>
+      <if test="usersid != null" >
+        #{usersid,jdbcType=VARCHAR},
+      </if>
+      <if test="carsid != null" >
+        #{carsid,jdbcType=VARCHAR},
+      </if>
+      <if test="thestart != null" >
+        #{thestart,jdbcType=VARCHAR},
+      </if>
+      <if test="theend != null" >
+        #{theend,jdbcType=VARCHAR},
+      </if>
+      <if test="place != null" >
+        #{place,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="addtime != null" >
+        #{addtime,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="money != null" >
+        #{money,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="zw.itman.rentcar.pojo.Orders" >
+    update orders
+    <set >
+      <if test="ordercode != null" >
+        ordercode = #{ordercode,jdbcType=VARCHAR},
+      </if>
+      <if test="usersid != null" >
+        usersid = #{usersid,jdbcType=VARCHAR},
+      </if>
+      <if test="carsid != null" >
+        carsid = #{carsid,jdbcType=VARCHAR},
+      </if>
+      <if test="thestart != null" >
+        thestart = #{thestart,jdbcType=VARCHAR},
+      </if>
+      <if test="theend != null" >
+        theend = #{theend,jdbcType=VARCHAR},
+      </if>
+      <if test="place != null" >
+        place = #{place,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="addtime != null" >
+        addtime = #{addtime,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="money != null" >
+        money = #{money,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ordersid = #{ordersid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="zw.itman.rentcar.pojo.Orders" >
+    update orders
+    set ordercode = #{ordercode,jdbcType=VARCHAR},
+      usersid = #{usersid,jdbcType=VARCHAR},
+      carsid = #{carsid,jdbcType=VARCHAR},
+      thestart = #{thestart,jdbcType=VARCHAR},
+      theend = #{theend,jdbcType=VARCHAR},
+      place = #{place,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      addtime = #{addtime,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      money = #{money,jdbcType=VARCHAR}
+    where ordersid = #{ordersid,jdbcType=VARCHAR}
+  </update>
+  
+  <select id="count" resultType="java.lang.Integer">
+  select count(*) from orders
+  </select>
+  
+  <select id="findAllOrdersPage" resultMap="UsersOrdersCarsDto">
+  		select os.*,us.username,us.realname,us.contact,
+  		cs.carno,cs.price
+  		from orders os 
+  		left join users us on os.usersid=us.usersid
+  		left join cars cs on os.carsid=cs.carsid
+  		limit #{offset},#{limit}
+  </select>
+  
+  <select id="findByOrdersid" resultMap="UsersOrdersCarsDto">
+  		select os.*,us.username,us.realname,us.contact,us.sex,us.idcard,
+  		cs.carno,cs.price,cs.image,cs.displacement
+  		from orders os 
+  		left join users us on os.usersid=us.usersid
+  		left join cars cs on os.carsid=cs.carsid
+  		where os.ordersid=#{ordersid}
+  </select>
+</mapper>
