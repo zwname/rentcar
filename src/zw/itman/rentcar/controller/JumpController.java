@@ -95,4 +95,12 @@ public class JumpController {
     public String changePassword() {
         return "back/person/password";
     }
+    
+    
+    @RequestMapping("/toindex")
+    public String toindex() {
+        return "front/index";
+    }
+    
+   
 }

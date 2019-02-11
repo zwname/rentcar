@@ -15,6 +15,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * @ClassName CateController
  * @Description
@@ -77,6 +79,33 @@ public class CateController {
     		}else {
     			return Message.fail("添加失败");
     		}
+    	}
+    }
+    
+    
+    
+    @RequestMapping(value="/goupdateCate",method=RequestMethod.GET)
+    public String goupdateCate(@RequestParam("cateid")String cateid,HttpServletRequest request) {
+    	Cate cate = cateService.selectByPrimaryKey(cateid);
+    	request.getSession().setAttribute("cate", cate);
+		return "back/cates/cates_update";
+    	
+    }
+   
+    
+ // 后台修改类型信息
+    @RequestMapping(value="/updateCate",method=RequestMethod.POST)
+    @ResponseBody
+    public Message updateCate(Cate cate) {
+    	if(cate.getCateid()!=null) {
+    		int i = cateService.updateByPrimaryKeySelective(cate);
+    		if(i>0) {
+    			return Message.success("修改成功");
+    		}else {
+    			return Message.fail("修改失败");
+    		}
+    	}else {
+    		return Message.fail("修改失败");
     	}
     }
 }

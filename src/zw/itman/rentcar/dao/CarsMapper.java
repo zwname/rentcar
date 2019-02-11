@@ -14,7 +14,7 @@ public interface CarsMapper {
 
     int insertSelective(Cars record);
 
-    Cars selectByPrimaryKey(String carsid);
+    CarsCateBrandDto selectByPrimaryKey(String carsid);
 
     int updateByPrimaryKeySelective(Cars record);
 
@@ -23,6 +23,7 @@ public interface CarsMapper {
     int updateByPrimaryKey(Cars record);
 
 	int count();
+	 List<CarsCateBrandDto> findAll();
 
 	List<CarsCateBrandDto> findAllPage(@Param("limit")Integer limit, @Param("offset")Integer offset);
 }

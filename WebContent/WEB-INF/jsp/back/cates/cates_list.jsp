@@ -73,7 +73,9 @@ function init() {
     });
 }
 
-
+function goupdate(cateid){
+	window.location.href="<%=request.getContextPath()%>/goupdateCate?cateid="+cateid;
+}
 function del(cateid){
     layer.confirm('确定要删除？', {
         btn: ['确定','取消'], //按钮

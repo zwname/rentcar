@@ -38,17 +38,17 @@ public class CateServiceImpl implements CateService {
 
     @Override
     public Cate selectByPrimaryKey(String cateid) {
-        return null;
+        return cateMapper.selectByPrimaryKey(cateid);
     }
 
     @Override
     public int updateByPrimaryKeySelective(Cate record) {
-        return 0;
+        return cateMapper.updateByPrimaryKeySelective(record);
     }
 
     @Override
     public int updateByPrimaryKey(Cate record) {
-        return 0;
+        return cateMapper.updateByPrimaryKey(record);
     }
 
     @Override

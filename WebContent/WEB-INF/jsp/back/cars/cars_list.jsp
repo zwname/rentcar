@@ -136,7 +136,7 @@
         });
     }
     function updatecar(carsid) {
-    	 
+    	window.location.href="<%=request.getContextPath()%>/goupdateCar?carsid="+carsid;
     }
 </script>
 </html>

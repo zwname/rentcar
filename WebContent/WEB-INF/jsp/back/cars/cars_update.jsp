@@ -18,74 +18,46 @@
                 <div class="form-group">
                     <label for="num" class="col-sm-2 control-label">车牌号</label>
                     <div class="col-sm-5">
-                        <input type="text" class="form-control" id="num" >
+                    <input type="hidden" id="carsid" value="${carsCateBrandDto.carsid }">
+                        <input type="text" class="form-control" id="num"  value="${carsCateBrandDto.carno }" readonly="readonly">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="pic" class="col-sm-2 control-label">图标</label>
                     <div class="col-sm-5">
-                        <img alt="" id="portrait" src="" style="display:none; width: 180px;height: 140px" />
+                        <img alt="" id="portrait" src="<%=request.getContextPath()%>/${carsCateBrandDto.image}"" style=" width: 180px;height: 140px" />
                         <input type="file" class="form-control" name="file" id="pic" onchange="showPreview(this)">
                     </div>
                 </div>
-                <div class="form-group">
-                    <label for="cate" class="col-sm-2 control-label">车辆类型</label>
-                    <div class="col-sm-5">
-                        <select id="cate"></select>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="brands" class="col-sm-2 control-label">车辆品牌</label>
-                    <div class="col-sm-5">
-                        <select id="brands"></select>
-                    </div>
-                </div>
+              
                 <div class="form-group">
                     <label for="price" class="col-sm-2 control-label">出租价位</label>
                     <div class="col-sm-5">
-                        <input type="text" class="form-control" id="price">
+                        <input type="text" class="form-control" id="price"  value="${carsCateBrandDto.price }">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="color" class="col-sm-2 control-label">车辆颜色</label>
                     <div class="col-sm-5">
-                        <input type="text" class="form-control" id="color">
+                        <input type="text" class="form-control" id="color"  value="${carsCateBrandDto.colour }" readonly="readonly">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="degree" class="col-sm-2 control-label">新旧程度</label>
                     <div class="col-sm-5">
-                        <input type="text" class="form-control" id="degree">
+                        <input type="text" class="form-control" id="degree"  value="${carsCateBrandDto.degree }" readonly="readonly">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="pailiang" class="col-sm-2 control-label">排量</label>
                     <div class="col-sm-5">
-                        <input type="text" class="form-control" id="pailiang">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="special" class="col-sm-2 control-label">是否特价</label>
-                    <div class="col-sm-5">
-                        <select id="special">
-                            <option value="是" aria-checked="true">是</option>
-                            <option value="否">否</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="recommend" class="col-sm-2 control-label">是否推荐</label>
-                    <div class="col-sm-5">
-                        <select id="recommend">
-                            <option value="是" aria-checked="true">是</option>
-                            <option value="否">否</option>
-                        </select>
+                        <input type="text" class="form-control" id="pailiang"  value="${carsCateBrandDto.displacement }" readonly="readonly">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="content" class="col-sm-2 control-label">简单描述</label>
                     <div class="col-sm-5">
-                        <textarea id="content" rows="4" style="width: 200px" cols="100" ></textarea>
+                        <textarea id="content" rows="4" style="width: 200px" cols="300" >${carsCateBrandDto.contents }</textarea>
                     </div>
                 </div>
                 <div class="form-group">
@@ -102,10 +74,10 @@
 </body>
 <script>
 
-    $(function () {
+   /*  $(function () {
         cate();
         brand();
-    });
+    }); */
     // 图片预览功能
     function showPreview() {
         var file =  document.getElementById('pic').files[0];
@@ -128,32 +100,17 @@
         }, function(){ // 点击确定后执行的功能
 
             var formData=new FormData();
-            var carno=$("#num").val();
+           var carsid=$("#carsid").val();
             var file=$("#pic").get(0).files[0];
-            var cateid=$("#cate").val();
-            var brandid=$("#brands").val();
-            var colour=$("#color").val();
             var price =$("#price").val();
-            var degree=$("#degree").val();
-            var displacement=$("#pailiang").val();
-            var special=$("#special").val();
-            var recommend=$("#recommend").val();
             var contents=$("#content").val();
-
-        formData.append("carno",carno);
+		formData.append("carsid",carsid);
         formData.append("file",file);
-        formData.append("cateid",cateid);
-        formData.append("brandid",brandid);
-        formData.append("colour",colour);
         formData.append("price",price);
-        formData.append("degree",degree);
-        formData.append("displacement",displacement);
-        formData.append("special",special);
-        formData.append("recommend",recommend);
         formData.append("contents",contents);
             // 发送ajax请求
             $.ajax({
-                url:"<%=path%>/addCars",
+                url:"<%=path%>/updateCars",
                 type: "POST",
                 cache: false,
                 contentType: false, //不设置内容类型
@@ -165,7 +122,7 @@
                         	window.setTimeout("javascript:location.href='<%=path%>/carsList'",1000);
                         });
                     }else{
-                        layer.alert(data.sss,{icon:2},fuction(){
+                        layer.alert(data.sss,{icon:2},function(){
                         	 window.setTimeout("javascript:location.reload()",1000);
                         });
                     }
@@ -177,7 +134,7 @@
     }
 
 
-
+<%-- 
     function cate() {
         var add = document.getElementById("cate");
 
@@ -209,6 +166,6 @@
             });
     }
 
-
+ --%>
 </script>
 </html>

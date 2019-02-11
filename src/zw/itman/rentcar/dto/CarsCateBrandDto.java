@@ -29,31 +29,46 @@ public class CarsCateBrandDto {
     private String special;
 
     private String recommend;
+    private String contents;
 
     private String catename;
     private String brandname;
 
 
-    public CarsCateBrandDto() {
+    public String getContents() {
+		return contents;
+	}
+
+	public void setContents(String contents) {
+		this.contents = contents;
+	}
+
+	public CarsCateBrandDto() {
     }
 
-    public CarsCateBrandDto(String carsid, String carno, String image, String cateid, String brandid, String price, String colour, String degree, String displacement, String special, String recommend, String catename, String brandname) {
-        this.carsid = carsid;
-        this.carno = carno;
-        this.image = image;
-        this.cateid = cateid;
-        this.brandid = brandid;
-        this.price = price;
-        this.colour = colour;
-        this.degree = degree;
-        this.displacement = displacement;
-        this.special = special;
-        this.recommend = recommend;
-        this.catename = catename;
-        this.brandname = brandname;
-    }
+  
 
-    public String getCarsid() {
+    public CarsCateBrandDto(String carsid, String carno, String image, String cateid, String brandid, String price,
+			String colour, String degree, String displacement, String special, String recommend, String contents,
+			String catename, String brandname) {
+		super();
+		this.carsid = carsid;
+		this.carno = carno;
+		this.image = image;
+		this.cateid = cateid;
+		this.brandid = brandid;
+		this.price = price;
+		this.colour = colour;
+		this.degree = degree;
+		this.displacement = displacement;
+		this.special = special;
+		this.recommend = recommend;
+		this.contents = contents;
+		this.catename = catename;
+		this.brandname = brandname;
+	}
+
+	public String getCarsid() {
         return carsid;
     }
 
@@ -157,22 +172,13 @@ public class CarsCateBrandDto {
         this.brandname = brandname;
     }
 
-    @Override
-    public String toString() {
-        return "CrasCateBrandDto{" +
-                "carsid='" + carsid + '\'' +
-                ", carno='" + carno + '\'' +
-                ", image='" + image + '\'' +
-                ", cateid='" + cateid + '\'' +
-                ", brandid='" + brandid + '\'' +
-                ", price='" + price + '\'' +
-                ", colour='" + colour + '\'' +
-                ", degree='" + degree + '\'' +
-                ", displacement='" + displacement + '\'' +
-                ", special='" + special + '\'' +
-                ", recommend='" + recommend + '\'' +
-                ", catename='" + catename + '\'' +
-                ", brandname='" + brandname + '\'' +
-                '}';
-    }
+	@Override
+	public String toString() {
+		return "CarsCateBrandDto [carsid=" + carsid + ", carno=" + carno + ", image=" + image + ", cateid=" + cateid
+				+ ", brandid=" + brandid + ", price=" + price + ", colour=" + colour + ", degree=" + degree
+				+ ", displacement=" + displacement + ", special=" + special + ", recommend=" + recommend + ", contents="
+				+ contents + ", catename=" + catename + ", brandname=" + brandname + "]";
+	}
+
+   
 }

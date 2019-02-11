@@ -38,13 +38,13 @@ public class CarsServiceImpl implements CarsService {
     }
 
     @Override
-    public Cars selectByPrimaryKey(String carsid) {
-        return null;
+    public CarsCateBrandDto selectByPrimaryKey(String carsid) {
+        return carsMapper.selectByPrimaryKey(carsid);
     }
 
     @Override
     public int updateByPrimaryKeySelective(Cars record) {
-        return 0;
+        return carsMapper.updateByPrimaryKeySelective(record);
     }
 
     @Override
@@ -66,4 +66,11 @@ public class CarsServiceImpl implements CarsService {
     public List<CarsCateBrandDto> findAllPage(Integer limit, Integer offset) {
         return carsMapper.findAllPage(limit,offset);
     }
+
+	@Override
+	public List<CarsCateBrandDto> findAll() {
+		// TODO Auto-generated method stub
+		
+		return carsMapper.findAll();
+	}
 }

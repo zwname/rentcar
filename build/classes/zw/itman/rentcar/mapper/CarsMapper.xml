@@ -31,6 +31,7 @@
     <result column="recommend" property="recommend" javaType="java.lang.String" jdbcType="VARCHAR"/>
     <result column="catename" property="catename" javaType="java.lang.String" jdbcType="VARCHAR"/>
     <result column="brandname" property="brandname" javaType="java.lang.String" jdbcType="VARCHAR"/>
+ 	<result column="contents" property="contents" javaType="java.lang.String" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
     carsid, carno, image, cateid, brandid, price, colour, degree, displacement, special, 
@@ -39,12 +40,10 @@
   <sql id="Blob_Column_List" >
     contents
   </sql>
-  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
-    select 
-    <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from cars
+  <select id="selectByPrimaryKey" resultMap="CarsCateBrandMap" parameterType="java.lang.String" >
+     select cs.*,ct.catename,bd.brandname from cars cs
+    left join cate ct on cs.cateid=ct.cateid
+    left join brand bd on cs.brandid=bd.brandid
     where carsid = #{carsid,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
@@ -219,5 +218,11 @@
     left join cate ct on cs.cateid=ct.cateid
     left join brand bd on cs.brandid=bd.brandid
     limit #{offset},#{limit}
+  </select>
+  <select id="findAll" resultMap="CarsCateBrandMap">
+  select cs.*,ct.catename,bd.brandname from cars cs
+    left join cate ct on cs.cateid=ct.cateid
+    left join brand bd on cs.brandid=bd.brandid
+  
   </select>
 </mapper>

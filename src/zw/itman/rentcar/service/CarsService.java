@@ -12,7 +12,7 @@ public interface CarsService {
 
     int insertSelective(Cars record);
 
-    Cars selectByPrimaryKey(String carsid);
+    CarsCateBrandDto selectByPrimaryKey(String carsid);
 
     int updateByPrimaryKeySelective(Cars record);
 
@@ -22,4 +22,6 @@ public interface CarsService {
 
     int count();
     List<CarsCateBrandDto> findAllPage(Integer limit, Integer offset);
+
+	 List<CarsCateBrandDto> findAll();
 }
