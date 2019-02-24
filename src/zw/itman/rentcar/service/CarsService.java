@@ -24,4 +24,15 @@ public interface CarsService {
     List<CarsCateBrandDto> findAllPage(Integer limit, Integer offset);
 
 	 List<CarsCateBrandDto> findAll();
+	 
+	 
+	 
+	   /**
+		 * 以下的借口是跟前台有关的
+		 * 
+		 */
+	 public List<CarsCateBrandDto> findByBrandid(String brandid);
+		public List<CarsCateBrandDto> findByCateid(String cateid);
+CarsCateBrandDto findOneCarById(String carsid);
+
 }

@@ -17,7 +17,7 @@ public class Users {
 
     private String contact;
 
-    private String address;
+    private String address2;
 
     public String getUsersid() {
         return usersid;
@@ -83,11 +83,11 @@ public class Users {
         this.contact = contact == null ? null : contact.trim();
     }
 
-    public String getAddress() {
-        return address;
+    public String getAddress2() {
+        return address2;
     }
 
-    public void setAddress(String address) {
-        this.address = address == null ? null : address.trim();
+    public void setAddress2(String address2) {
+        this.address2 = address2 == null ? null : address2.trim();
     }
 }

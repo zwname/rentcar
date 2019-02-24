@@ -13,6 +13,8 @@
     <result column="addtime" property="addtime" jdbcType="VARCHAR" />
     <result column="status" property="status" jdbcType="VARCHAR" />
     <result column="money" property="money" jdbcType="VARCHAR" />
+    <result column="turnback" property="turnback" jdbcType="VARCHAR" />
+    <result column="pay" property="pay" jdbcType="VARCHAR" />
   </resultMap>
   <resultMap type="zw.itman.rentcar.dto.UsersOrdersCarsDto" id="UsersOrdersCarsDto">
   	<id column="ordersid" property="ordersid" jdbcType="VARCHAR" />
@@ -26,13 +28,15 @@
     <result column="addtime" property="addtime" jdbcType="VARCHAR" />
     <result column="status" property="status" jdbcType="VARCHAR" />
     <result column="money" property="money" jdbcType="VARCHAR" />
+    <result column="turnback" property="turnback" jdbcType="VARCHAR" />
+    <result column="pay" property="pay" jdbcType="VARCHAR" />
     <!--用户  -->
      <result column="username" property="username" jdbcType="VARCHAR" />
     <result column="realname" property="realname" jdbcType="VARCHAR" />
     <result column="contact" property="contact" jdbcType="VARCHAR" />
     <result column="sex" property="sex" jdbcType="VARCHAR" />
     <result column="idcard" property="idcard" jdbcType="VARCHAR" />
-   <!--  <result column="address" property="address2" jdbcType="VARCHAR" /> -->
+    <result column="address2" property="address2" jdbcType="VARCHAR" />
    <!-- 车辆 -->
     <result column="carno" property="carno" jdbcType="VARCHAR" />
     <result column="price" property="price" jdbcType="VARCHAR" />
@@ -40,7 +44,7 @@
     <result column="image" property="image" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    ordersid, ordercode, usersid, carsid, thestart, theend, place, address, addtime, 
+    ordersid, ordercode, usersid, carsid, turnback, pay, thestart, theend, place, address, addtime, 
     status, money
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
@@ -57,11 +61,11 @@
     insert into orders (ordersid, ordercode, usersid, 
       carsid, thestart, theend, 
       place, address, addtime, 
-      status, money)
+      status, money,turnback,pay)
     values (#{ordersid,jdbcType=VARCHAR}, #{ordercode,jdbcType=VARCHAR}, #{usersid,jdbcType=VARCHAR}, 
       #{carsid,jdbcType=VARCHAR}, #{thestart,jdbcType=VARCHAR}, #{theend,jdbcType=VARCHAR}, 
       #{place,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{addtime,jdbcType=VARCHAR}, 
-      #{status,jdbcType=VARCHAR}, #{money,jdbcType=VARCHAR})
+      '-1', #{money,jdbcType=VARCHAR},'-1','-1')
   </insert>
   <insert id="insertSelective" parameterType="zw.itman.rentcar.pojo.Orders" >
     insert into orders
@@ -99,6 +103,12 @@
       <if test="money != null" >
         money,
       </if>
+       <if test="turnback != null" >
+        turnback,
+      </if>
+       <if test="pay != null" >
+        pay,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="ordersid != null" >
@@ -129,10 +139,16 @@
         #{addtime,jdbcType=VARCHAR},
       </if>
       <if test="status != null" >
-        #{status,jdbcType=VARCHAR},
+        '-1',
       </if>
       <if test="money != null" >
         #{money,jdbcType=VARCHAR},
+      </if>
+      <if test="turnback != null" >
+        '-1',
+      </if>
+      <if test="pay != null" >
+       '-1',
       </if>
     </trim>
   </insert>
@@ -201,11 +217,78 @@
   </select>
   
   <select id="findByOrdersid" resultMap="UsersOrdersCarsDto">
-  		select os.*,us.username,us.realname,us.contact,us.sex,us.idcard,
+  		select os.*,us.username,us.realname,us.contact,us.sex,us.idcard,us.address2,
   		cs.carno,cs.price,cs.image,cs.displacement
   		from orders os 
   		left join users us on os.usersid=us.usersid
   		left join cars cs on os.carsid=cs.carsid
   		where os.ordersid=#{ordersid}
   </select>
+  
+  <!-- 未完成订单分页数据 -->
+  <select id="findOrders1PageByusersid" parameterType="java.lang.String" resultMap="UsersOrdersCarsDto">
+  select os.*,us.username,us.realname,us.contact,us.sex,us.idcard,us.address2,
+  		cs.carno,cs.price,cs.image,cs.displacement
+  		from orders os 
+  		left join users us on os.usersid=us.usersid
+  		left join cars cs on os.carsid=cs.carsid
+  		where os.usersid=#{usersid} and os.status='-1'
+  		limit #{offset},#{limit}
+  </select>
+  <select id="countwithUseridStatus" resultType="java.lang.Integer">
+  
+  SELECT
+	count(*)
+FROM
+	(
+		select os.*,us.username,us.realname,us.contact,us.sex,us.idcard,us.address2,
+  		cs.carno,cs.price,cs.image,cs.displacement
+  		from orders os 
+  		left join users us on os.usersid=us.usersid
+  		left join cars cs on os.carsid=cs.carsid
+  		where os.usersid=#{usersid} and os.status='-1'
+	) ss
+  </select>
+  
+  
+  
+   <!-- 已完成订单分页数据 -->
+  <select id="findOrders2PageByusersid" parameterType="java.lang.String" resultMap="UsersOrdersCarsDto">
+  select os.*,us.username,us.realname,us.contact,us.sex,us.idcard,us.address2,
+  		cs.carno,cs.price,cs.image,cs.displacement
+  		from orders os 
+  		left join users us on os.usersid=us.usersid
+  		left join cars cs on os.carsid=cs.carsid
+  		where os.usersid=#{usersid} and os.status='1'
+  		limit #{offset},#{limit}
+  </select>
+  <select id="countwithUseridstatus" resultType="java.lang.Integer">
+  
+  SELECT
+	count(*)
+FROM
+	(
+		select os.*,us.username,us.realname,us.contact,us.sex,us.idcard,us.address2,
+  		cs.carno,cs.price,cs.image,cs.displacement
+  		from orders os 
+  		left join users us on os.usersid=us.usersid
+  		left join cars cs on os.carsid=cs.carsid
+  		where os.usersid=#{usersid} and os.status='1'
+	) ss
+  </select>
+  
+  <!-- 还车 -->
+  <update id="backcar" parameterType="java.lang.String" >
+  
+     update orders set turnback ='1'
+      where ordersid=#{ordersid}
+  
+  </update>
+  <!-- 续租 -->
+  <update id="relet" parameterType="zw.itman.rentcar.pojo.Orders" >
+  
+     update orders set theend =#{theend}
+      where ordersid=#{ordersid}
+  
+  </update>
 </mapper>

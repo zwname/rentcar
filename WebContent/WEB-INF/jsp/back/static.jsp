@@ -18,6 +18,7 @@
 <link rel="stylesheet" href="<%=basePath%>resources/back_resources/assets/css/main.css">
 <link rel="stylesheet" href="<%=basePath%>resources/back_resources/assets/css/demo.css">
 <link rel="stylesheet" href="<%=basePath%>resources/back_resources/assets/bootstrap-table/bootstrap-table.css">
+<link rel="stylesheet" href="<%=basePath%>resources/back_resources/bootstrap-datetimepicker/bootstrap-datetimepicker.min.css">
 <%--
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
 --%>
@@ -30,6 +31,9 @@
 <script src="<%=basePath%>resources/back_resources/assets/layer/layer.js" type="text/javascript" ></script>
 <script src="<%=basePath%>resources/back_resources/assets/bootstrap-table/bootstrap-table.js" type="text/javascript" ></script>
 <script src="<%=basePath%>resources/back_resources/assets/bootstrap-table/bootstrap-table-zh-CN.js" type="text/javascript" ></script>
+<script src="<%=basePath%>resources/back_resources/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js" ></script>
+<script src="<%=basePath%>resources/back_resources/bootstrap-datetimepicker/bootstrap-datetimepicker.zh-CN.js" ></script>
+
 <body>
 </body>
 </html>

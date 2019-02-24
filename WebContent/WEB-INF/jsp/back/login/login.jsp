@@ -29,6 +29,7 @@
 <div id="header">
     <div class="header_title">
         <span class="title_con">汽车租赁后台</span>
+        <span  class="title_con"><input id="back"  type="button" value="首  页" class="submit-btn"/></span>
     </div>
 </div>
 
@@ -36,6 +37,7 @@
 <center>
         <div class="con">
             <div class="con_title">
+            
                 <span class="con_title_sp">欢迎登录</span>
             </div>
             <div class="con_panel">
@@ -77,5 +79,9 @@
          });
 
  });
+ 
+ $("#back").click(function(){
+	 window.location.href="<%=request.getContextPath()%>/toheader";
+ })
 </script>
 </html>

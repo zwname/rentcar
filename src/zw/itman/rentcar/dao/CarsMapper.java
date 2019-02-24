@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import zw.itman.rentcar.dto.CarsCateBrandDto;
+import zw.itman.rentcar.pojo.Brand;
 import zw.itman.rentcar.pojo.Cars;
 
 public interface CarsMapper {
@@ -26,4 +27,13 @@ public interface CarsMapper {
 	 List<CarsCateBrandDto> findAll();
 
 	List<CarsCateBrandDto> findAllPage(@Param("limit")Integer limit, @Param("offset")Integer offset);
+
+	/**
+	 * 以下的借口是跟前台有关的
+	 * 
+	 */
+	public List<CarsCateBrandDto> findByBrandid(String brandid);
+	public List<CarsCateBrandDto> findByCateid(String cateid);
+	CarsCateBrandDto findOneCarById(String carsid);
+
 }

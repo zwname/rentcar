@@ -124,7 +124,7 @@
 
 										},
 										{
-											field : 'address',
+											field : 'address2',
 											title : '住址',
 											align : 'center'
 										},

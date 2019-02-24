@@ -64,4 +64,6 @@ public class BrandServiceImpl implements BrandService {
     public List<Brand> findAllPage(Integer offset, Integer limit) {
         return brandMapper.findAllPage(offset , limit);
     }
+
+  
 }

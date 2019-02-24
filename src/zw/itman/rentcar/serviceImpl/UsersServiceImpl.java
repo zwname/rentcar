@@ -61,4 +61,12 @@ public class UsersServiceImpl implements UsersService{
 		return usersMapper.findAllUsersPage(limit, offset);
 	}
 
+	
+	// 前台的用户登陆
+	@Override
+	public Users userlogin(Users users) {
+		// TODO Auto-generated method stub
+		return usersMapper.userlogin(users);
+	}
+
 }

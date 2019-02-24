@@ -86,18 +86,56 @@ function init() {
             field: 'addtime',
             title: '预定日期',
             align: 'center'
-
+            	  
         },{
             field: 'status',
             title: '订单状态',
-            align: 'center'
+            align: 'center',
+            formatter:function(value,row){
+      		  if(row.status=="-1"){
+      			  return "进行中";
+      		  }
+      		  if(row.status=="1"){
+      			return "已完成";
+      		  }
+      	  }
 
         },{
+            field: 'turnback',
+            title: '是否还车',
+            align: 'center',
+            formatter:function(value,row){
+      		  if(row.status=="-1"){
+      			  return "未还车";
+      		  }
+      		  if(row.status=="1"){
+      			return "已还车";
+      		  }
+      	  }
+
+        },{
+            field: 'pay',
+            title: '是否支付',
+            align: 'center',
+            formatter:function(value,row){
+      		  if(row.status=="-1"){
+      			  return "未支付";
+      		  }
+      		  if(row.status=="1"){
+      			return "已支付";
+      		  }
+      	  }
+
+        }
+        ,{
             title: '总价格(RMB)',
             align: 'center',
             formatter:function(value,row){
-            	var days=getDays(row.thestart,row.theend);
-            	return days*(row.price); 
+            	// 计算出租天数及价格
+            	var beginTime = new Date((row.thestart).replace(/-/g, "/"));
+        		var endTime=new Date((row.theend).replace(/-/g,"/"));
+        		var days = (endTime.getTime() - beginTime.getTime())/(3600*24*1000);
+        		return days*(row.price);
             }
 
         },{
@@ -110,14 +148,6 @@ function init() {
     });
 }
 
-	function getDays(begin,end){ 
-		var beginTime = new Date(begin.replace(/-/g, "/"));
-		var endTime=new Date(end.replace(/-/g,"/"));
-		var days = (endTime.getTime() - beginTime.getTime())/(3600*24*1000); 
-		return days; 
-		}
-	
-	
 	function showInfo(ordersid){
 		layer.open({
 			  type: 2, //Layer提供了5种层类型。可传入的值有：0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）,

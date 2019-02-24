@@ -24,4 +24,5 @@ public interface BrandMapper {
 	List<Brand> allBrand();
 
 	List<Brand> findAllPage(@Param("offset")Integer offset, @Param("limit")Integer limit);
+
 }

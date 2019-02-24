@@ -10,10 +10,10 @@
     <result column="birthday" property="birthday" jdbcType="VARCHAR" />
     <result column="idcard" property="idcard" jdbcType="VARCHAR" />
     <result column="contact" property="contact" jdbcType="VARCHAR" />
-    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="address2" property="address2" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    usersid, username, password, realname, sex, birthday, idcard, contact, address
+    usersid, username, password, realname, sex, birthday, idcard, contact, address2
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
@@ -28,11 +28,11 @@
   <insert id="insert" parameterType="zw.itman.rentcar.pojo.Users" >
     insert into users (usersid, username, password, 
       realname, sex, birthday, 
-      idcard, contact, address
+      idcard, contact, address2
       )
     values (#{usersid,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
       #{realname,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, #{birthday,jdbcType=VARCHAR}, 
-      #{idcard,jdbcType=VARCHAR}, #{contact,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}
+      #{idcard,jdbcType=VARCHAR}, #{contact,jdbcType=VARCHAR}, #{address2,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="zw.itman.rentcar.pojo.Users" >
@@ -62,8 +62,8 @@
       <if test="contact != null" >
         contact,
       </if>
-      <if test="address != null" >
-        address,
+      <if test="address2 != null" >
+        address2,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -91,8 +91,8 @@
       <if test="contact != null" >
         #{contact,jdbcType=VARCHAR},
       </if>
-      <if test="address != null" >
-        #{address,jdbcType=VARCHAR},
+      <if test="address2 != null" >
+        #{address2,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -120,8 +120,8 @@
       <if test="contact != null" >
         contact = #{contact,jdbcType=VARCHAR},
       </if>
-      <if test="address != null" >
-        address = #{address,jdbcType=VARCHAR},
+      <if test="address2 != null" >
+        address2 = #{address2,jdbcType=VARCHAR},
       </if>
     </set>
     where usersid = #{usersid,jdbcType=VARCHAR}
@@ -135,7 +135,7 @@
       birthday = #{birthday,jdbcType=VARCHAR},
       idcard = #{idcard,jdbcType=VARCHAR},
       contact = #{contact,jdbcType=VARCHAR},
-      address = #{address,jdbcType=VARCHAR}
+      address2 = #{address2,jdbcType=VARCHAR}
     where usersid = #{usersid,jdbcType=VARCHAR}
   </update>
   
@@ -145,5 +145,13 @@
   
   <select id="findAllUsersPage" resultMap="BaseResultMap">
   select * from users limit #{offset},#{limit}
+  </select>
+  <!-- 前台用户登陆 -->
+  <select id="userlogin" parameterType="zw.itman.rentcar.pojo.Users" resultMap="BaseResultMap">
+  
+  select us.* from users us 
+  where us.username=#{username} 
+  and us.password=#{password}
+  
   </select>
 </mapper>

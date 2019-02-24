@@ -73,4 +73,22 @@ public class CarsServiceImpl implements CarsService {
 		
 		return carsMapper.findAll();
 	}
+
+	@Override
+	public List<CarsCateBrandDto> findByBrandid(String brandid) {
+		// TODO Auto-generated method stub
+		return carsMapper.findByBrandid(brandid);
+	}
+
+	@Override
+	public List<CarsCateBrandDto> findByCateid(String cateid) {
+		// TODO Auto-generated method stub
+		return carsMapper.findByCateid(cateid);
+	}
+
+	@Override
+	public CarsCateBrandDto findOneCarById(String carsid) {
+		// TODO Auto-generated method stub
+		return carsMapper.findOneCarById(carsid);
+	}
 }

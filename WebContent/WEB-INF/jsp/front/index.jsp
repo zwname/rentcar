@@ -40,8 +40,6 @@
 		});
 	</script>
 <body>
-<div class="wrap-body">
-<jsp:include page="header.jsp"></jsp:include>
 
 <div class="slider">
 	<!-- Slideshow -->
@@ -308,8 +306,7 @@
 	</div>
 </section>
 
-<jsp:include page="footer.jsp"></jsp:include>
 
-</div>
+
 </body>
 </html>

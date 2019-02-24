@@ -23,7 +23,7 @@
 	<mvc:annotation-driven />
 	<!-- 设置默认的访问页面 -->
 	<mvc:view-controller path="/"
-		view-name="redirect:/toindex" />
+		view-name="redirect:/toheader" />
 
 	<!-- 对静态资源的放行 -->
 	<mvc:default-servlet-handler />

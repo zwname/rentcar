@@ -225,4 +225,32 @@
     left join brand bd on cs.brandid=bd.brandid
   
   </select>
+  
+  
+  <!-- 以下的方法是跟前台有关的 -->
+ 
+ <select id="findByBrandid" parameterType="java.lang.String" resultMap="CarsCateBrandMap">
+ 
+ select cs.*,ct.catename,bd.brandname from cars cs
+    left join cate ct on cs.cateid=ct.cateid
+    left join brand bd on cs.brandid=bd.brandid
+    where cs.brandid=#{brandid}
+ 
+ </select>
+ <select id="findByCateid" parameterType="java.lang.String" resultMap="CarsCateBrandMap">
+
+ select cs.*,ct.catename,bd.brandname from cars cs
+    left join brand bd on cs.brandid=bd.brandid
+    left join cate ct on cs.cateid=ct.cateid
+    where cs.cateid=#{cateid}
+ 
+ </select>
+ 
+ <select id="findOneCarById" parameterType="java.lang.String" resultMap="CarsCateBrandMap">
+	 select cs.*,ct.catename,bd.brandname 
+	    from cars cs
+	    left join brand bd on cs.brandid=bd.brandid
+	    left join cate ct on cs.cateid=ct.cateid
+	    where cs.carsid=#{carsid}
+ </select>
 </mapper>

@@ -79,4 +79,5 @@
   <select id="findAllPage" resultType="zw.itman.rentcar.pojo.Brand">
     select * from brand  limit #{offset}, #{limit}
   </select>
+ 
 </mapper>

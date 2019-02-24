@@ -24,4 +24,13 @@ public interface OrdersMapper {
     int count();
     List<UsersOrdersCarsDto> findAllOrdersPage(@Param("limit")Integer limit,@Param("offset")Integer offset);
    UsersOrdersCarsDto findByOrdersid(String ordersid);
+   // 前台未完成订单
+   List<UsersOrdersCarsDto> findOrders1PageByusersid(@Param("limit")Integer limit,@Param("offset") Integer offset, @Param("usersid")String usersid);
+   int countwithUseridStatus(@Param("usersid")String usersid);
+   // 前台已完成订单
+   List<UsersOrdersCarsDto> findOrders2PageByusersid(@Param("limit")Integer limit,@Param("offset") Integer offset, @Param("usersid")String usersid);
+   int countwithUseridstatus(@Param("usersid")String usersid);
+   //还车功能
+   int backcar(String id);
+   int relet(Orders orders);
 }

@@ -22,8 +22,28 @@ public class Orders {
     private String status;
 
     private String money;
+    private String turnback;
+    private String pay;
+    
+    
 
-    public String getOrdersid() {
+    public String getTurnback() {
+		return turnback;
+	}
+
+	public void setTurnback(String turnback) {
+		this.turnback = turnback;
+	}
+
+	public String getPay() {
+		return pay;
+	}
+
+	public void setPay(String pay) {
+		this.pay = pay;
+	}
+
+	public String getOrdersid() {
         return ordersid;
     }
 

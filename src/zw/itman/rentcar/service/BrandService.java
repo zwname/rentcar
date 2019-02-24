@@ -23,4 +23,5 @@ public interface BrandService {
     int count();
 
     List<Brand> findAllPage( Integer offset,Integer limit);
+    
 }

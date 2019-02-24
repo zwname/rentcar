@@ -14,6 +14,12 @@ public class UsersOrdersCarsDto {
 	    private String addtime;
 	    private String status;
 	    private String money;
+	    private String turnback;
+	    private String pay;
+	    
+	    
+
+	   
 	    
 	    // 用户信息
 	    private String username;
@@ -28,6 +34,21 @@ public class UsersOrdersCarsDto {
 	    private String price;
 	    private String displacement;
 	    private String image;
+	    public String getTurnback() {
+			return turnback;
+		}
+
+		public void setTurnback(String turnback) {
+			this.turnback = turnback;
+		}
+
+		public String getPay() {
+			return pay;
+		}
+
+		public void setPay(String pay) {
+			this.pay = pay;
+		}
 		public String getOrdersid() {
 			return ordersid;
 		}

@@ -18,18 +18,18 @@ public class Days {
 		return days;
 	}
 	
-//	public static void main(String[] args)  {
-//		
-//		try {
-//			String b="2013-12-2";
-//			String e="2014-12-2";
-//			long days = Days.getDays(b, e);
-//			System.err.println("days=========="+days);
-//		} catch (ParseException e1) {
-//			// TODO Auto-generated catch block
-//			e1.printStackTrace();
-//		}
-//		
-//	}
+	public static void main(String[] args)  {
+		
+		try {
+			String b="2013-9-2";
+			String e="2013-10-2";
+			long days = Days.getDays(b, e);
+			System.err.println("days=========="+days);
+		} catch (ParseException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+	}
 
 }

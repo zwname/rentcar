@@ -19,4 +19,6 @@ public interface UsersService {
     
     int count();
     List<Users> findAllUsersPage(Integer limit,Integer offset);
+
+	Users userlogin(Users users);
 }
