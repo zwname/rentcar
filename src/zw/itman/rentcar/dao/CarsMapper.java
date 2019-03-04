@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 import zw.itman.rentcar.dto.CarsCateBrandDto;
 import zw.itman.rentcar.pojo.Brand;
 import zw.itman.rentcar.pojo.Cars;
+import zw.itman.rentcar.pojo.Topic;
 
 public interface CarsMapper {
     int deleteByPrimaryKey(String carsid);
@@ -35,5 +36,11 @@ public interface CarsMapper {
 	public List<CarsCateBrandDto> findByBrandid(String brandid);
 	public List<CarsCateBrandDto> findByCateid(String cateid);
 	CarsCateBrandDto findOneCarById(String carsid);
+	
+	// 查询首页的推荐车辆
+	List <CarsCateBrandDto> findCarsWithRecommend();
+	// 查询首页的特价车辆
+	List <CarsCateBrandDto> findCarsWithSpecial();
+	
 
 }

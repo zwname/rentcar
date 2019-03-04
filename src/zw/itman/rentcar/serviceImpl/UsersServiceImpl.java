@@ -22,7 +22,7 @@ public class UsersServiceImpl implements UsersService{
 	@Override
 	public int insert(Users record) {
 		// TODO Auto-generated method stub
-		return 0;
+		return usersMapper.insert(record);
 	}
 
 	@Override

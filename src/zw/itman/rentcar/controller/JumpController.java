@@ -97,15 +97,15 @@ public class JumpController {
     }
     
     
+   
+    
     @RequestMapping("/toheader")
     public String toheader() {
         return "front/header";
     }
     
-    @RequestMapping("/toindex")
-    public String toindex() {
-        return "front/index";
+    @RequestMapping("/touserRegister")
+    public String touserRegister() {
+        return "front/register";
     }
-    
-   
 }

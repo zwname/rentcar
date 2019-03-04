@@ -91,4 +91,16 @@ public class CarsServiceImpl implements CarsService {
 		// TODO Auto-generated method stub
 		return carsMapper.findOneCarById(carsid);
 	}
+
+	@Override
+	public List<CarsCateBrandDto> findCarsWithRecommend() {
+		// TODO Auto-generated method stub
+		return carsMapper.findCarsWithRecommend();
+	}
+
+	@Override
+	public List<CarsCateBrandDto> findCarsWithSpecial() {
+		// TODO Auto-generated method stub
+		return carsMapper.findCarsWithSpecial();
+	}
 }

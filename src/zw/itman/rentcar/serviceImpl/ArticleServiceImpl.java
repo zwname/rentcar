@@ -68,4 +68,10 @@ public class ArticleServiceImpl implements ArticleService{
 		return articleMapper.findAllPage(limit, offset);
 	}
 
+	@Override
+	public List<Article> findToIndex() {
+		// TODO Auto-generated method stub
+		return articleMapper.findToIndex();
+	}
+
 }

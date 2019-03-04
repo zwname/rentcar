@@ -26,13 +26,13 @@ public class OrdersServiceImpl implements OrdersService{
 	@Override
 	public int insert(Orders record) {
 		// TODO Auto-generated method stub
-		return 0;
+		return ordersMapper.insert(record);
 	}
 
 	@Override
 	public int insertSelective(Orders record) {
 		// TODO Auto-generated method stub
-		return 0;
+		return ordersMapper.insertSelective(record);
 	}
 
 	@Override
@@ -44,7 +44,7 @@ public class OrdersServiceImpl implements OrdersService{
 	@Override
 	public int updateByPrimaryKeySelective(Orders record) {
 		// TODO Auto-generated method stub
-		return 0;
+		return ordersMapper.updateByPrimaryKeySelective(record);
 	}
 
 	@Override
@@ -107,6 +107,18 @@ public class OrdersServiceImpl implements OrdersService{
 	public int relet(Orders orders) {
 		// TODO Auto-generated method stub
 		return ordersMapper.relet(orders);
+	}
+
+	@Override
+	public int paid(Orders orders) {
+		// TODO Auto-generated method stub
+		return ordersMapper.paid(orders);
+	}
+
+	@Override
+	public int updateMoneyById(String ordersid) {
+		// TODO Auto-generated method stub
+		return ordersMapper.updateMoneyById(ordersid);
 	}
 	
 	

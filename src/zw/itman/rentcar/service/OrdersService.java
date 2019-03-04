@@ -33,4 +33,8 @@ public interface OrdersService {
     // 还车功能
 	int backcar(String id);
 	int relet(Orders orders);
+
+	// 评价过后吧money字段值设置为-1
+    int updateMoneyById(String ordersid);
+	int paid(Orders orders);
 }

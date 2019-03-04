@@ -21,6 +21,8 @@ public interface OrdersMapper {
     int updateByPrimaryKeySelective(Orders record);
 
     int updateByPrimaryKey(Orders record);
+    // 评价过后吧money字段值设置为-1
+    int updateMoneyById(@Param("ordersid")String ordersid);
     int count();
     List<UsersOrdersCarsDto> findAllOrdersPage(@Param("limit")Integer limit,@Param("offset")Integer offset);
    UsersOrdersCarsDto findByOrdersid(String ordersid);
@@ -32,5 +34,9 @@ public interface OrdersMapper {
    int countwithUseridstatus(@Param("usersid")String usersid);
    //还车功能
    int backcar(String id);
+   //续租
    int relet(Orders orders);
+ //结算
+   int paid(Orders orders);
+   
 }

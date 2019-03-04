@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -70,86 +71,24 @@
 					<div class="header">
 						<h2>推荐车辆</h2>
 					</div>	
-					<div class="row">
-						<div class="col-1-3">
+					<c:forEach var="recars" items="${recommendCars}">
+						<div class="col-1-4">
 							<div class="wrap-col">
 								<div class="item t-center">
 									<div class="item-container">
-										<a href="single.html">
-											<img src="${path}/resources/front_resources/images/car1.jpg" />
-										</a>
+										<a href="${path}/findOneCarById?carsid=${recars.carsid}"  target="mainFrame"> <img src="${path}/${recars.image}" style="height: 210px" /></a>
 									</div>
 									<div class="item-info">
-										<a href="single.html"><h3>宝马X1 </h3></a>
-										<p>32,000 km €78,400</p>
+										<a href="${path}/findOneCarById?carsid=${recars.carsid}"  target="mainFrame"><h3><c:out value="${recars.brandname }  ${recars.catename}"/></h3></a>
+										<p style="font-size: 15px">
+											<c:out value="${recars.price }" />&nbsp;RMB
+										</p>
 									</div>
 								</div>
-								<div class="item t-center">
-									<div class="item-container">
-										<a href="single.html">
-											<img src="${path}/resources/front_resources/images/car5.jpg" />
-										</a>
-									</div>
-									<div class="item-info">
-										<a href="single.html"><h3>奔驰600s</h3></a>
-										<p>32,000 km €78,400</p>
-									</div>
-								</div>
+								
 							</div>
 						</div>
-						<div class="col-1-3">
-							<div class="wrap-col">
-								<div class="item t-center">
-									<div class="item-container">
-										<a href="single.html">
-											<img src="${path}/resources/front_resources/images/car2.jpg" />
-										</a>
-									</div>
-									<div class="item-info">
-										<a href="single.html"><h3>布加迪威龙</h3></a>
-										<p>32,000 km €78,400</p>
-									</div>
-								</div>
-								<div class="item t-center">
-									<div class="item-container">
-										<a href="single.html">
-											<img src="${path}/resources/front_resources/images/car4.jpg" />
-										</a>
-									</div>
-									<div class="item-info">
-										<a href="single.html"><h3>劳斯莱斯</h3></a>
-										<p>32,000 km €78,400</p>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-1-3">
-							<div class="wrap-col">
-								<div class="item t-center">
-									<div class="item-container">
-										<a href="single.html">
-											<img src="${path}/resources/front_resources/images/car3.jpg" />
-										</a>
-									</div>
-									<div class="item-info">
-										<a href="single.html"><h3>奥迪Q12</h3></a>
-										<p>32,000 km €78,400</p>
-									</div>
-								</div>
-								<div class="item t-center">
-									<div class="item-container">
-										<a href="single.html">
-											<img src="${path}/resources/front_resources/images/car1.jpg" />
-										</a>
-									</div>
-									<div class="item-info">
-										<a href="single.html"><h3>宾利</h3></a>
-										<p>32,000 km €78,400</p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
+					</c:forEach>
 				</div>
 			</div>
 			<div class="wrap-box" >
@@ -157,114 +96,31 @@
 					<div class="header">
 						<h2>特价车辆</h2>
 					</div>
-					<div class="row">
+					<div class="row" >
+					
 						<div class="col-2-3">
 							<div class="wrap-col">
+							<c:forEach var="spcars" items="${specialCars}">
 								<div class="row">
 									<div class="item">
 										<div class="col-1-3">
 											<div class="item-container">
-												<a href="single.html">
-													<img src="${path}/resources/front_resources/images/car7.jpg" />
-												</a>
+											<a href="${path}/findOneCarById?carsid=${spcars.carsid}"  target="mainFrame"> <img src="${path}/${spcars.image}" style="height: 210px" /></a>
 											</div>
 										</div>
 										<div class="col-2-3">
 											<div class="wrap-col">
 												<div class="item-info">
-													<a href="single.html"><h3>LAMBORGHINI GALLARDO</h3></a>
-													<p>32,000 km €78,400</p>
-													<p>ABS, Leather seats, Power Assisted Steering, Electric heated seats, New HU and AU, Xenon headlights</p>
+													<a href="${path}/findOneCarById?carsid=${spcars.carsid}"  target="mainFrame"><h3><c:out value="${spcars.brandname }  ${spcars.catename}"/></h3></a>
+													<p><c:out value="${spcars.price }" />&nbsp;RMB</p>
+													<p><c:out value="${spcars.contents }" /></p>
 												</div>
 											</div>
 										</div>
 										<div class="clear"></div>
 									</div>
 								</div>
-								<div class="row">
-									<div class="item">
-										<div class="col-1-3">
-											<div class="item-container">
-												<a href="single.html">
-													<img src="${path}/resources/front_resources/images/car8.jpg" />
-												</a>
-											</div>
-										</div>
-										<div class="col-2-3">
-											<div class="wrap-col">
-												<div class="item-info">
-													<a href="single.html"><h3>LAMBORGHINI GALLARDO</h3></a>
-													<p>32,000 km €78,400</p>
-													<p>ABS, Leather seats, Power Assisted Steering, Electric heated seats, New HU and AU, Xenon headlights</p>
-												</div>
-											</div>
-										</div>
-										<div class="clear"></div>
-									</div>
-								</div>
-								<div class="row">
-									<div class="item">
-										<div class="col-1-3">
-											<div class="item-container">
-												<a href="single.html">
-													<img src="${path}/resources/front_resources/images/car9.jpg" />
-												</a>
-											</div>
-										</div>
-										<div class="col-2-3">
-											<div class="wrap-col">
-												<div class="item-info">
-													<a href="single.html"><h3>LAMBORGHINI GALLARDO</h3></a>
-													<p>32,000 km €78,400</p>
-													<p>ABS, Leather seats, Power Assisted Steering, Electric heated seats, New HU and AU, Xenon headlights</p>
-												</div>
-											</div>
-										</div>
-										<div class="clear"></div>
-									</div>
-								</div>
-								<div class="row">
-									<div class="item">
-										<div class="col-1-3">
-											<div class="item-container">
-												<a href="single.html">
-													<img src="${path}/resources/front_resources/images/car10.jpg" />
-												</a>
-											</div>
-										</div>
-										<div class="col-2-3">
-											<div class="wrap-col">
-												<div class="item-info">
-													<a href="single.html"><h3>LAMBORGHINI GALLARDO</h3></a>
-													<p>32,000 km €78,400</p>
-													<p>ABS, Leather seats, Power Assisted Steering, Electric heated seats, New HU and AU, Xenon headlights</p>
-												</div>
-											</div>
-										</div>
-										<div class="clear"></div>
-									</div>
-								</div>
-								<div class="row">
-									<div class="item">
-										<div class="col-1-3">
-											<div class="item-container">
-												<a href="single.html">
-													<img src="${path}/resources/front_resources/images/car7.jpg" />
-												</a>
-											</div>
-										</div>
-										<div class="col-2-3">
-											<div class="wrap-col">
-												<div class="item-info">
-													<a href="single.html"><h3>LAMBORGHINI GALLARDO</h3></a>
-													<p>32,000 km €78,400</p>
-													<p>ABS, Leather seats, Power Assisted Steering, Electric heated seats, New HU and AU, Xenon headlights</p>
-												</div>
-											</div>
-										</div>
-										<div class="clear"></div>
-									</div>
-								</div>
+								</c:forEach>
 							</div>
 						</div>
 						<div id="sidebar" class="col-1-3">
@@ -273,29 +129,18 @@
 									<div class="wid-header">
 										<h5>新闻公告</h5>
 									</div>
+									<c:forEach var="article" items="${indexArticle}">
 									<div class="wid-content">
 										<div class="post">
-											<a href="#"><img src="${path}/resources/front_resources/images/car8.jpg"/></a>
 											<div class="wrapper">
-											  <h5><a href="#">Lorem ipsum dolor</a></h5>
-											   <span>$25 - $26</span>
+											  <h5><a href="#"><c:out value="${article.title }"></c:out></a></h5>
+											  <p><c:out value="${article.contents }"></c:out></p>
+											  <span style="color: red;size: 10px"><c:out value="${article.addtime }"></c:out></span>
 											</div>
 										</div>
-										<div class="post">
-											<a href="#"><img src="${path}/resources/front_resources/images/car9.jpg"/></a>
-											<div class="wrapper">
-											  <h5><a href="#">Lorem ipsum dolor</a></h5>
-											  <span>$25 - $26</span>
-											</div>
-										</div>
-										<div class="post">
-											<a href="#"><img src="${path}/resources/front_resources/images/car10.jpg"/></a>
-											<div class="wrapper">
-											  <h5><a href="#">Lorem ipsum dolor</a></h5>
-											   <span>$25 - $26</span>
-											</div>
-										</div>
+										
 									</div>
+									</c:forEach>
 								</div>
 							</div>
 						</div>

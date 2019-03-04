@@ -2,6 +2,8 @@ package zw.itman.rentcar.controller;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 
+import java.util.UUID;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,9 +56,6 @@ public class FrontUserLoginController {
 	public String touserinfo(@RequestParam("usersid") String usersid,HttpServletRequest request) {
 		//用户信息
 		request.getSession().setAttribute("userinfo", userService.selectByPrimaryKey(usersid));
-		//已完成订单
-		//未完成订单
-		//我的评价
 		return "front/userinfo";
 		
 	}
@@ -72,6 +71,25 @@ public class FrontUserLoginController {
 			}
 		}else {
 			return Message.fail("更新失败");
+		}
+		
+	}
+	
+	
+	@RequestMapping(value="/userRegister",method=RequestMethod.POST)
+	@ResponseBody
+	public Message userRegister(Users users) {
+		if(users.getUsersid()!=null) {
+			return Message.fail("注册失败");
+		}else {
+			
+			users.setUsersid(UUID.randomUUID().toString().replaceAll("-", ""));
+			int i = userService.insert(users);
+			if(i>0) {
+				return Message.success("注册成功，即将前往登陆页面");
+			}else {
+				return Message.fail("注册失败");
+			}
 		}
 		
 	}

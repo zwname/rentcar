@@ -35,4 +35,10 @@ public interface CarsService {
 		public List<CarsCateBrandDto> findByCateid(String cateid);
 CarsCateBrandDto findOneCarById(String carsid);
 
+
+//查询首页的推荐车辆
+	List <CarsCateBrandDto> findCarsWithRecommend();
+	// 查询首页的特价车辆
+	List <CarsCateBrandDto> findCarsWithSpecial();
+
 }

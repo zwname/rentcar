@@ -31,13 +31,13 @@
                 <div class="form-group">
                     <label for="cate" class="col-sm-2 control-label">车辆类型</label>
                     <div class="col-sm-5">
-                        <select id="cate"></select>
+                        <select id="cate" style="width: 200px"></select>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="brands" class="col-sm-2 control-label">车辆品牌</label>
                     <div class="col-sm-5">
-                        <select id="brands"></select>
+                        <select id="brands" style="width: 200px"></select>
                     </div>
                 </div>
                 <div class="form-group">
@@ -68,8 +68,8 @@
                     <label for="special" class="col-sm-2 control-label">是否特价</label>
                     <div class="col-sm-5">
                         <select id="special">
-                            <option value="是" aria-checked="true">是</option>
-                            <option value="否">否</option>
+                            <option value="1" aria-checked="true">是</option>
+                            <option value="-1">否</option>
                         </select>
                     </div>
                 </div>
@@ -77,15 +77,15 @@
                     <label for="recommend" class="col-sm-2 control-label">是否推荐</label>
                     <div class="col-sm-5">
                         <select id="recommend">
-                            <option value="是" aria-checked="true">是</option>
-                            <option value="否">否</option>
+                            <option value="1" aria-checked="true">是</option>
+                            <option value="-1">否</option>
                         </select>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="content" class="col-sm-2 control-label">简单描述</label>
                     <div class="col-sm-5">
-                        <textarea id="content" rows="4" style="width: 200px" cols="100" ></textarea>
+                        <textarea id="content" rows="4" style="width: 600px" cols="100" ></textarea>
                     </div>
                 </div>
                 <div class="form-group">

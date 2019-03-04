@@ -2,6 +2,7 @@ package zw.itman.rentcar.service;
 
 import org.apache.ibatis.annotations.Param;
 import zw.itman.rentcar.dto.UserTopicCarsDto;
+import zw.itman.rentcar.dto.UsersOrdersCarsDto;
 import zw.itman.rentcar.pojo.Topic;
 
 import java.util.List;
@@ -24,4 +25,8 @@ public interface TopicService {
     List<UserTopicCarsDto> findAllPage(@Param("limit") Integer limit, @Param("offset") Integer offset);
 
     void deltopicByPrimaryKey(String topicid);
+    
+    List<UserTopicCarsDto> findtopicByUsersid(Integer limit,Integer offset, String usersid);
+    int countTopicWithUserid(String usersid);
+    
 }

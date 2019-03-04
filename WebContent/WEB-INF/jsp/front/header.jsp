@@ -40,11 +40,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			          </ul>	
 			        </li>
 			        <c:if test="${null == users.usersid}">
-				   <li><a href="${path}/touserlogin" target="mainFrame">[登录]</a></li>
-				   <li><a href="single.html" target="mainFrame">[注册]</a></li>
+				   <li><a href="${path}/touserlogin" target="mainFrame">[ 登录 ]</a></li>
+				   <li><a href="${path}/touserRegister" target="mainFrame">[ 注册 ]</a></li> 
 				   </c:if>
 				   <c:if test="${null != users.usersid }">
-				     <li><a href="${path}/touserinfo?usersid=${users.usersid}" target="mainFrame">欢迎您:&nbsp;<b style="color:red">-${users.realname}-</b></a></li>
+				     <li><a href="${path}/touserinfo?usersid=${users.usersid}" target="mainFrame">欢迎您:&nbsp;<b style="color:red">[ ${users.username} ]</b></a></li>
 				     <li><a href="${path}/loginout" ><b style="color:red">[注销]</b></a></li>
 				     </c:if>
 				   <li><a href="${path}/toBackLogin">后台系统</a></li>

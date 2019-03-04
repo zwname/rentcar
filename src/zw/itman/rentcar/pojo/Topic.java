@@ -60,4 +60,12 @@ public class Topic {
     public void setContents(String contents) {
         this.contents = contents == null ? null : contents.trim();
     }
+
+	@Override
+	public String toString() {
+		return "Topic [topicid=" + topicid + ", usersid=" + usersid + ", carsid=" + carsid + ", num=" + num
+				+ ", addtime=" + addtime + ", contents=" + contents + "]";
+	}
+    
+    
 }

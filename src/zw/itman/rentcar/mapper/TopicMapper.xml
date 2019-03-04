@@ -139,4 +139,20 @@
     limit #{offset},#{limit}
 
   </select>
+  
+  <!--前台用户评价分页数据  -->
+  <select id="findtopicByUsersid" parameterType="java.lang.String" resultMap="UserTopicCar">
+   select t.topicid,t.num,t.addtime,t.contents,u.username,c.carno from topic t 
+  left join cars c on t.carsid=c.carsid
+  left join users u on t.usersid=u.usersid
+  where u.usersid=#{usersid}
+   limit #{offset},#{limit}
+  </select>
+  <select id="countTopicWithUserid" resultType="java.lang.Integer">
+  select count(*) from (
+   select t.topicid,t.num,t.addtime,t.contents,u.username,c.carno from topic t 
+  left join cars c on t.carsid=c.carsid
+  left join users u on t.usersid=u.usersid
+  where u.usersid=#{usersid}) ss
+  </select>
 </mapper>

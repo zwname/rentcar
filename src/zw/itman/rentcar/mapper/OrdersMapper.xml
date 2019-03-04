@@ -185,6 +185,9 @@
       <if test="money != null" >
         money = #{money,jdbcType=VARCHAR},
       </if>
+      <if test="pay != null" >
+        pay = #{pay,jdbcType=VARCHAR},
+      </if>
     </set>
     where ordersid = #{ordersid,jdbcType=VARCHAR}
   </update>
@@ -290,5 +293,17 @@ FROM
      update orders set theend =#{theend}
       where ordersid=#{ordersid}
   
+  </update>
+   <update id="paid" parameterType="zw.itman.rentcar.pojo.Orders" >
+  
+     update orders set 
+     
+     pay=#{pay}
+   
+      where ordersid=#{ordersid}
+  
+  </update>
+  <update id="updateMoneyById" parameterType="java.lang.String">
+  update orders set money='1' where ordersid=#{ordersid}
   </update>
 </mapper>

@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import zw.itman.rentcar.dto.UserTopicCarsDto;
+import zw.itman.rentcar.dto.UsersOrdersCarsDto;
 import zw.itman.rentcar.pojo.Topic;
 
 public interface TopicMapper {
@@ -23,6 +24,13 @@ public interface TopicMapper {
     int updateByPrimaryKey(Topic record);
 
     int count ();
+ // 评价过后吧money字段值设置为-1
+    int updateMoneyById(String ordersid);
 
     List<UserTopicCarsDto> findAllPage(@Param("limit") Integer limit, @Param("offset") Integer offset);
+
+    List<UserTopicCarsDto> findtopicByUsersid(@Param("limit")Integer limit,@Param("offset") Integer offset, @Param("usersid")String usersid);
+    int countTopicWithUserid(@Param("usersid")String usersid);
+    
+ 
 }

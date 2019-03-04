@@ -253,4 +253,18 @@
 	    left join cate ct on cs.cateid=ct.cateid
 	    where cs.carsid=#{carsid}
  </select>
+ <!--  推荐的车辆-->
+ <select id="findCarsWithRecommend" resultMap="CarsCateBrandMap">
+   select cs.*,ce.catename,bd.brandname from cars cs 
+   left join cate ce on cs.cateid=ce.cateid
+   left join brand bd on cs.brandid=bd.brandid
+  where cs.recommend='1' ORDER BY cs.price limit 0,8
+ </select>
+ <!--  特价的车辆-->
+ <select id="findCarsWithSpecial" resultMap="CarsCateBrandMap">
+ select cs.*,ce.catename,bd.brandname from cars cs 
+   left join cate ce on cs.cateid=ce.cateid
+   left join brand bd on cs.brandid=bd.brandid
+  where cs.special='1' ORDER BY cs.price limit 0,5
+ </select>
 </mapper>

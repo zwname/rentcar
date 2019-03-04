@@ -104,3 +104,10 @@ span.title_con {
     font-size: 1em;
     color: #333;
 }
+.span{
+	font-family: "微软雅黑";
+	font-size: 1em;
+	font-weight: bold;
+	color: #333;
+	margin-left:-80px;
+}

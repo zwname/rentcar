@@ -57,7 +57,7 @@
                 <div class="form-group">
                     <label for="content" class="col-sm-2 control-label">简单描述</label>
                     <div class="col-sm-5">
-                        <textarea id="content" rows="4" style="width: 200px" cols="300" >${carsCateBrandDto.contents }</textarea>
+                        <textarea id="content" rows="4" style="width: 595px"  >${carsCateBrandDto.contents }</textarea>
                     </div>
                 </div>
                 <div class="form-group">

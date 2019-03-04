@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import zw.itman.rentcar.pojo.Article;
+import zw.itman.rentcar.pojo.Topic;
 
 public interface ArticleService {
     int deleteByPrimaryKey(String articleid);
@@ -22,4 +23,6 @@ public interface ArticleService {
     int updateByPrimaryKey(Article record);
     int count();
     List<Article> findAllPage(Integer limit, Integer offset);
+ // 首页显示的公告
+    List<Article> findToIndex();
 }
