@@ -41,13 +41,13 @@ String path1=request.getContextPath();
 		</div>
 		<div class="con_panel">
 			<div class="con_input">
-				<span>用户名：</span><input type="text" id="username"/>
+				<span>用户名：</span><input type="text" id="username" placeholder="用户名"/>
 			</div>
 			<div class="con_input">
-				<span>密&nbsp;&nbsp;&nbsp;&nbsp;码：</span><input type="password" id="password"/>
+				<span>密&nbsp;&nbsp;&nbsp;&nbsp;码：</span><input type="password" id="password" placeholder="密码"/>
 			</div>
 			<div class="con_input">
-				<span>手机号：</span><input type="text" id="tel"/>
+				<span>手机号：</span><input type="text" id="tel" placeholder="手机号"/>
 			</div>
 			<div >
 				<span class="span">性&nbsp;&nbsp;&nbsp;别：</span>

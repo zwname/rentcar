@@ -19,10 +19,10 @@ String path1=request.getContextPath();
 	<li><a href="#orderin" data-toggle="tab">未完成的订单</a></li>
 	<li><a href="#orderout" data-toggle="tab">已完成的订单</a></li>
 	<li><a href="#topic" data-toggle="tab">我的评价</a></li>
-	<li class="active"><a href="#password" data-toggle="tab"> 修改密码</a></li>
 </ul>
 <div id="myTabContent" class="tab-content">
 	<div class="tab-pane fade in active" id="userinfo">
+	<center>
 		<form  method="post">
 					<div class="modal-body">
 								<table class="table-edit">
@@ -31,7 +31,7 @@ String path1=request.getContextPath();
 											<td class="t-edit-title">用户名</td>
 											<td>
 											 <div class="form-box">
-											 <input id="usersid" type="hidden" value="${userinfo.usersid }">
+											 <input id="usersid1" type="hidden" value="${userinfo.usersid }">
 													<input id="username" class="form-input form-input-ms input-block form-input-radius"  value="${userinfo.username }" />
 		                                        </div>
 												</td>
@@ -91,6 +91,8 @@ String path1=request.getContextPath();
 						<button id="saveuser" type="button" class="btn btn-success btn-ms">保存</button>
 					</div>
 				</form>
+				
+			</center>
 		
 	</div>
 	<div class="tab-pane fade" id="orderin">
@@ -101,15 +103,12 @@ String path1=request.getContextPath();
 		<table class="table" id="order2">
 		</table>
 	</div>
-	<div class="tab-pane fade" id="topic">
+	<div class="tab-pane fade " id="topic">
 		<table class="table" id="topictable">
 		</table>
 	</div>
-	
-	<div class="tab-pane fade" id="password">
-		
-	</div>
-	
+
+
 </div>
 	<div class="modal fade" id="relet" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel" aria-hidden="true">
@@ -121,7 +120,7 @@ String path1=request.getContextPath();
 					<h4 class="modal-title" id="myModalLabel">续租窗口</h4>
 				</div>
 				<form class="form-horizontal" >
-					<input type="hidden" id="ordersid"> 
+					<input type="hidden" id="ordersid1"> 
 					<input type="hidden" id="theend">
 						<div class="form-group">
 								<label for="relettime" class="col-sm-3 control-label">续租日期</label>
@@ -149,9 +148,9 @@ String path1=request.getContextPath();
 					<h4 class="modal-title" id="myModalLabel">评价窗口</h4>
 				</div>
 				<form class="form-horizontal" >
-					<input type="hidden" id="usersid" value="${userinfo.usersid }"> 
+					<input type="hidden" id="usersid2" value="${userinfo.usersid }"> 
 					<input type="hidden" id="carsid">
-					<input type="hidden" id="ordersid">
+					<input type="hidden" id="ordersid2">
 						<div class="form-group">
 								<label for="relettime" class="col-sm-3 control-label">选择星级</label>
 								<div class="col-sm-6" style="margin-top: 10px">
@@ -231,7 +230,7 @@ function order1() {
 								return {
 									limit : params.limit, // 每页要显示的数据条数
 									offset : params.offset, // 每页显示数据的开始行号
-									usersid : $("#usersid").val()
+									usersid : $("#usersid1").val()
 								}
 							},
 							sidePagination : "server", //分页方式：client客户端分页，server服务端分页（*）
@@ -354,7 +353,7 @@ function order1() {
 	//还车功能
 
 	function backcar(ordersid,address) {
-		var usersid = $('#usersid').val();
+		var usersid = $('#usersid1').val();
 		layer.confirm('确定在[-' + address + '-]还车？',
 						{
 			            btn : [ '确定', '取消' ], //按钮
@@ -384,14 +383,14 @@ function order1() {
 	
 	function torelet(ordersid,theend){
 		$("#relet").modal("show");
-		$("#ordersid").val(ordersid);
+		$("#ordersid1").val(ordersid);
 		$("#theend").val(theend);
 		
 	}
 	
 	function relet(){
-		var usersid = $('#usersid').val();
-		var ordersid=$("#ordersid").val();
+		var usersid = $('#usersid1').val();
+		var ordersid=$("#ordersid1").val();
 		var relettime=$("#relettime").val();
 		layer.confirm('确定续租？',
 				{
@@ -429,11 +428,11 @@ function order1() {
 		
 		$("#topicWin").modal("show");
 		$("#carsid").val(carsid);
-		$("#ordersid").val(ordersid);
+		$("#ordersid2").val(ordersid);
 	}
 	/*提交评价  */
 	function addtopic(){
-		var usersid=$("#usersid").val();
+		var usersid=$("#usersid2").val();
 		layer.confirm('确定提交吗？',
 				{
 	            btn : [ '确定', '取消' ], //按钮
@@ -448,7 +447,7 @@ function order1() {
         	            	num:$("input[name='xingji']:checked").val(),
         	            	carsid:$("#carsid").val(),
         	            	contents:$("#contents").val(),
-        	            	ordersid:$("#ordersid").val()
+        	            	ordersid:$("#ordersid2").val()
         	            },
 		            	success:function(result){
 		            		if(result.code==1){
@@ -469,7 +468,7 @@ function order1() {
 		
 	}
 	function paid(ordersid){
-		var usersid = $('#usersid').val();
+		var usersid = $('#usersid1').val();
 		layer.confirm('确定结算吗？',
 				{
 	            btn : [ '确定', '取消' ], //按钮
@@ -512,7 +511,7 @@ function order2() {
             return {
                 limit: params.limit, // 每页要显示的数据条数
                 offset: params.offset, // 每页显示数据的开始行号
-           		usersid:$("#usersid").val()
+           		usersid:$("#usersid1").val()
             }
         },
         sidePagination: "server",           //分页方式：client客户端分页，server服务端分页（*）
@@ -595,7 +594,7 @@ function order2() {
 
 
 $("#saveuser").click(function () {
-	var usersid=$('#usersid').val();
+	var usersid=$('#usersid1').val();
 	layer.confirm("确定修改？",
 			{
 		     title:"提示信息",
@@ -606,7 +605,7 @@ $("#saveuser").click(function () {
 					url:"${path}/frontupdateuser",
 					type:"post",
 					data:{
-						usersid:$("#usersid").val(),
+						usersid:$("#usersid1").val(),
 						username:$("#username").val(),
 						realname:$("#realname").val(),
 						sex:$("#sex").val(),
@@ -645,7 +644,7 @@ function topictable() {
 								return {
 									limit : params.limit, // 每页要显示的数据条数
 									offset : params.offset, // 每页显示数据的开始行号
-									usersid : $("#usersid").val()
+									usersid : $("#usersid2").val()
 								}
 							},
 							sidePagination : "server", //分页方式：client客户端分页，server服务端分页（*）
@@ -691,7 +690,7 @@ function topictable() {
 	}
 	
 	function del(topicid){
-		var usersid=$('#usersid').val();
+		var usersid=$('#usersid2').val();
 		layer.confirm('确定删除吗？',
 				{
 				title:"警告",
@@ -765,6 +764,7 @@ function topictable() {
 				},function(){});
 			
 	}
+
 
 $("#birthday").datetimepicker({
 	autoclose: true,//选中之后自动隐藏日期选择框 

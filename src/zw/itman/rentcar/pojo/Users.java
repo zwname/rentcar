@@ -18,8 +18,19 @@ public class Users {
     private String contact;
 
     private String address2;
+    
+    private String userstatus;
+    
 
-    public String getUsersid() {
+    public String getUserstatus() {
+		return userstatus;
+	}
+
+	public void setUserstatus(String userstatus) {
+		this.userstatus = userstatus;
+	}
+
+	public String getUsersid() {
         return usersid;
     }
 
@@ -90,4 +101,16 @@ public class Users {
     public void setAddress2(String address2) {
         this.address2 = address2 == null ? null : address2.trim();
     }
+
+	@Override
+	public String toString() {
+		return "Users [usersid=" + usersid + ", username=" + username + ", password=" + password + ", realname="
+				+ realname + ", sex=" + sex + ", birthday=" + birthday + ", idcard=" + idcard + ", contact=" + contact
+				+ ", address2=" + address2 + ", userstatus=" + userstatus + "]";
+	}
+
+	
+    
+    
+    
 }

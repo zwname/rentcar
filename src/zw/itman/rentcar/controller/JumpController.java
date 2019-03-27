@@ -40,7 +40,10 @@ public class JumpController {
     public String userList() {
         return "back/users/users_list";
     }
-
+    @RequestMapping("/users_back_list")
+    public String users_back_list() {
+        return "back/users/users_back_list";
+    }
 
     @RequestMapping("/catesList")
     public String cateList() {

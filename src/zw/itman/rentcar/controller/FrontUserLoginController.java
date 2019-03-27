@@ -35,12 +35,17 @@ public class FrontUserLoginController {
 		//request.getSession().setAttribute("users", user);
 		System.err.println("========"+user);
 		if(user!=null) {
-			request.getSession().setAttribute("users", user);
-			return Message.success("登陆成功");
+			if("1".equals(user.getUserstatus())) {
+				request.getSession().setAttribute("users", user);
+				return Message.success("登陆成功");
+			}else  {
+				return Message.fail("账户已被锁定");
+			}
 			//
 		}else {
 			return Message.fail("用户名或密码错误");
 		}
+		
 	}
 
 	// 前台的注销功能
@@ -84,6 +89,7 @@ public class FrontUserLoginController {
 		}else {
 			
 			users.setUsersid(UUID.randomUUID().toString().replaceAll("-", ""));
+			users.setUserstatus("1");
 			int i = userService.insert(users);
 			if(i>0) {
 				return Message.success("注册成功，即将前往登陆页面");
@@ -93,4 +99,43 @@ public class FrontUserLoginController {
 		}
 		
 	}
+	
+	// 检查密码
+	@RequestMapping(value="/checkOldPwd",method=RequestMethod.POST)
+	@ResponseBody
+	public Message checkOldPwd(Users users) {
+		Users selectByPrimaryKey = userService.selectByPrimaryKey(users.getUsersid());
+		System.err.println("---------------selectByPrimaryKey"+selectByPrimaryKey.toString());
+		if(selectByPrimaryKey.getPassword().equals(users.getPassword())) {
+			return Message.success("");
+		}else {
+			return Message.fail("原始密码错误");
+		}
+	}
+	
+	
+	@RequestMapping("/tochangepwd")
+	public String tochangepwd(@RequestParam("usersid")String usersid,HttpServletRequest request) {
+		Users userss = userService.selectByPrimaryKey(usersid);
+		request.getSession().setAttribute("userss", userss);
+		return "front/changepwd";
+	}
+	// 修改密码
+	@RequestMapping(value="/changePwd",method=RequestMethod.POST)
+	@ResponseBody
+	public Message changePwd(Users users) {
+		if(users.getUsersid()!=null) {
+			if(userService.updateByPrimaryKeySelective(users)>0) {
+				return Message.success("修改成功");
+			}else {
+				return Message.fail("修改失败");
+			}
+		}else {
+			return Message.fail("修改失败");
+		}
+		
+		
+	}
+	
+	
 }

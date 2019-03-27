@@ -10,7 +10,7 @@
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+request.getContextPath()+"/";
         pageContext.setAttribute("path",request.getContextPath());
     %>
-<title>Insert title here</title>
+<title>汽车租赁系统--Home</title>
  	<link rel="stylesheet" href="<%=basePath%>resources/front_resources/css/zerogrid.css">
 	<link rel="stylesheet" href="<%=basePath%>resources/front_resources/css/style.css">
 	<link rel="stylesheet" href="<%=basePath%>resources/front_resources/css/responsiveslides.css">
@@ -45,7 +45,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				   </c:if>
 				   <c:if test="${null != users.usersid }">
 				     <li><a href="${path}/touserinfo?usersid=${users.usersid}" target="mainFrame">欢迎您:&nbsp;<b style="color:red">[ ${users.username} ]</b></a></li>
-				     <li><a href="${path}/loginout" ><b style="color:red">[注销]</b></a></li>
+				    
+				     <li class="dropdown">
+			          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">选项 <span class="caret"></span></a>
+			          <ul class="dropdown-menu" >
+			          <li><a href="${path}/tochangepwd?usersid=${users.usersid}" target="mainFrame"><b >[修改密码]</b></a></li>
+			           <li><a href="${path}/loginout" ><b style="color:red">[ 注销 ]</b></a></li>
+			          </ul>	
+			        </li>
 				     </c:if>
 				   <li><a href="${path}/toBackLogin">后台系统</a></li>
 				</ul> 	
@@ -54,7 +61,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</div>
 	</div>
 </div>
-            <iframe id="mainFrame" name="mainFrame" src="${path}/toindex" frameborder="0" width="100%"  height="700px" frameBorder="0"></iframe>
+            <iframe id="mainFrame" name="mainFrame" src="${path}/toindex" frameborder="0" width="100%"  height="700px" scrolling="auto"></iframe>
 <jsp:include page="footer.jsp"></jsp:include>
 </div>
 </body>

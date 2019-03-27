@@ -12,6 +12,7 @@ import zw.itman.rentcar.pojo.Admin;
 import zw.itman.rentcar.service.AdminService;
 import zw.itman.rentcar.util.Message;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -32,7 +33,7 @@ public class AdminController {
     // 执行登录操作
     @RequestMapping(value = "/adminLogin",method = RequestMethod.GET)
     @ResponseBody
-    public Message adminLogin(Admin admin)  {
+    public Message adminLogin(Admin admin,HttpServletRequest request)  {
         System.err.println(admin.toString());
 
         if ("".equals(admin.getUsername())) {
@@ -43,6 +44,7 @@ public class AdminController {
             Admin login = adminService.login(admin);
             if(null!=login){
                 System.err.println(login.toString());
+                request.getSession().setAttribute("login", login);
                 return Message.success("登录成功");
             }else{
                 return Message.fail("用户名或密码错误");
@@ -55,6 +57,13 @@ public class AdminController {
     public String toLogin(){
         return "back/login/login";
     }
-
+    
+    
+    // 注销
+    @RequestMapping("/adminlogout")
+    public String adminlogout(HttpServletRequest request){
+    	request.getSession().removeAttribute("login");
+        return "back/login/login";
+    }
 
 }

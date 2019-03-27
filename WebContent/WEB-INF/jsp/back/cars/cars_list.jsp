@@ -93,13 +93,26 @@
             },{
                 field: 'special',
                 title: '是否特价',
-                align: 'center'
+                align: 'center',
+                formatter: function (value, row) {
+                   if(row.special=="1"){
+                	   return "是";
+                   }else{
+                	   return "否";
+                   }
+                }
 
             },{
                 field: 'recommend',
                 title: '是否推荐',
-                align: 'center'
-
+                align: 'center',
+                formatter: function (value, row) {
+                	 if(row.recommend=="1"){
+                  	   return "是";
+                     }else{
+                  	   return "否";
+                     }
+                }
             },{
                 title: '操作',
                 align:"center",

@@ -46,7 +46,7 @@ public class UsersServiceImpl implements UsersService{
 	@Override
 	public int updateByPrimaryKey(Users record) {
 		// TODO Auto-generated method stub
-		return 0;
+		return usersMapper.updateByPrimaryKey(record);
 	}
 
 	@Override
@@ -67,6 +67,19 @@ public class UsersServiceImpl implements UsersService{
 	public Users userlogin(Users users) {
 		// TODO Auto-generated method stub
 		return usersMapper.userlogin(users);
+	}
+
+	// 黑名单用户
+	@Override
+	public List<Users> findAllUsersPage1(Integer limit, Integer offset) {
+		// TODO Auto-generated method stub
+		return usersMapper.findAllUsersPage1(limit, offset);
+	}
+
+	@Override
+	public int count1() {
+		// TODO Auto-generated method stub
+		return usersMapper.count1();
 	}
 
 }

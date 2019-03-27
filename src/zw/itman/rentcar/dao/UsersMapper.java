@@ -20,6 +20,8 @@ public interface UsersMapper {
     int updateByPrimaryKey(Users record);
     int count();
     List<Users> findAllUsersPage(@Param("limit")Integer limit,@Param("offset")Integer offset);
-    
+    int count1();
+    List<Users> findAllUsersPage1(@Param("limit")Integer limit,@Param("offset")Integer offset);
+
     Users userlogin(Users users);
 }

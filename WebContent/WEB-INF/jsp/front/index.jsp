@@ -15,10 +15,10 @@
   	<link rel="stylesheet" href="${path}/resources/front_resources/css/zerogrid.css">
 	<link rel="stylesheet" href="${path}/resources/front_resources/css/style.css">
 	<link rel="stylesheet" href="${path}/resources/front_resources/css/responsiveslides.css">
-	
-	<script src="${path }/resources/front_resources/js/jquery-latest.min.js"></script>
+	<jsp:include page="../back/static.jsp"></jsp:include>
+	<%-- <script src="${path }/resources/front_resources/js/jquery-latest.min.js"></script>
 	<script src="${path }/resources/front_resources/js/script.js"></script>
-    <script src="${path }/resources/front_resources/js/jquery183.min.js"></script>
+    <script src="${path }/resources/front_resources/js/jquery183.min.js"></script> --%>
     <script src="${path }/resources/front_resources/js/responsiveslides.min.js"></script>
 </head>
   <script>
@@ -40,6 +40,13 @@
 		  });
 		});
 	</script>
+	<style>
+	.ms{
+	margin-left: 30px;
+	margin-top: -10px;
+	}
+	
+	</style>
 <body>
 
 <div class="slider">
@@ -133,7 +140,10 @@
 									<div class="wid-content">
 										<div class="post">
 											<div class="wrapper">
-											  <h5><a href="#"><c:out value="${article.title }"></c:out></a></h5>
+											
+											  <h5 style="display: inline"><a href="#"><c:out value="${article.title }"></c:out></a></h5>
+											  <button type="button" class="btn btn-info ms" onclick="showinfo('${article.articleid}')">详情</button>
+											 
 											  <p><c:out value="${article.contents }"></c:out></p>
 											  <span style="color: red;size: 10px"><c:out value="${article.addtime }"></c:out></span>
 											</div>
@@ -151,7 +161,21 @@
 	</div>
 </section>
 
+<script type="text/javascript">
+function showinfo(articleid){
+	layer.open({
+		  type: 2, //Layer提供了5种层类型。可传入的值有：0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）,
+		  closeBtn: 1, //关闭按钮是否显示 1显示0不显示
+		  shade:0.1, //遮罩层透明度
+		  shadeClose:true,
+		  area:['850px','500px'], //弹出层宽高
+		  title:'公告详情',//弹出层标题
+		  content:'<%=request.getContextPath()%>/findByArticleid?articleid='+articleid //这里content是一个URL，如果你不想让iframe出现滚动条，你还可以content: ['http://sentsin.com', 'no']
+		});
+	}
 
+
+</script>
 
 </body>
 </html>

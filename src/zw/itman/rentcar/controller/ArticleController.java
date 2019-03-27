@@ -84,6 +84,16 @@ public class ArticleController {
 		}
 	}
 	
+	
+	
+	@RequestMapping(value="/findByArticleid",method=RequestMethod.GET)
+	public String findByArticleid(@RequestParam("articleid")String articleid,HttpServletRequest request) {
+		Article aa = articleService.selectByPrimaryKey(articleid);
+		System.err.println("selectByPrimaryKey---------"+aa);
+		request.getSession().setAttribute("article", aa);
+		return "front/articleInfo";
+	}
+	
 	public String getAddTime() {
 		 Date date = new Date();
 	      SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");

@@ -37,11 +37,11 @@
             <div id="navbar-menu">
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="${path}/resources/back_resources/assets/img/user.png" class="img-circle" alt="Avatar"> <span>admin</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <span>${login.username}</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
                         <ul class="dropdown-menu">
                             <li><a href="${path}/person" target="mainFrame"><i class="lnr lnr-user"></i> <span>个人中心</span></a></li>
                             <li><a href="${path}/changePassword" target="mainFrame"><i class="lnr lnr-envelope"></i> <span>修改密码</span></a></li>
-                            <li><a href="#"><i class="lnr lnr-exit"></i> <span>注销</span></a></li>
+                            <li><a href="${path}/adminlogout"><i class="lnr lnr-exit"></i> <span>注销</span></a></li>
                         </ul>
                     </li>
                 </ul>
@@ -66,6 +66,7 @@
                         <div id="subPages2" class="collapse ">
                             <ul class="nav">
                                 <li><a href="${path}/usersList" class="" target="mainFrame">注册用户列表</a></li>
+                                <li><a href="${path}/users_back_list" class="" target="mainFrame">黑名单</a></li>
                             </ul>
                         </div>
                     </li>
@@ -119,9 +120,9 @@
     <div class="main">
         <!-- MAIN CONTENT -->
         <div class="main-content">
-            <iframe id="mainFrame" name="mainFrame" src="${path}/newsList.do" frameborder="0" width="100%"  height="540px" frameBorder="0"></iframe>
+            <iframe id="mainFrame" name="mainFrame" src="${path}/newsList.do"  scrolling="auto" width="100%"  height="550px" frameBorder="0"></iframe>
         </div>
-        <jsp:include page="footer.jsp"></jsp:include>
+       
     </div>
 </div>
 </body>

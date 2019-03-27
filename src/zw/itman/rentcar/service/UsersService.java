@@ -2,6 +2,8 @@ package zw.itman.rentcar.service;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import zw.itman.rentcar.pojo.Users;
 
 public interface UsersService {
@@ -19,6 +21,9 @@ public interface UsersService {
     
     int count();
     List<Users> findAllUsersPage(Integer limit,Integer offset);
+    int count1();
+    List<Users> findAllUsersPage1(Integer limit,Integer offset);
+
 
 	Users userlogin(Users users);
 }

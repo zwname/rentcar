@@ -14,51 +14,11 @@
 <body>
 	<div class="main">
 		<div>
-			<h4 class="page-title" style="display: inline-block">注册用户列表</h4>
+			<h4 class="page-title" style="display: inline-block">注册用户-黑名单</h4>
 		</div>
 		
 				<table class="table table-hover" id="tobody">
 				</table>
-		
-
-		<div class="modal fade" tabindex="-1" id="updatewin" role="dialog"
-			aria-labelledby="gridSystemModalLabel">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal"
-							aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-						<h4 class="modal-title" id="gridSystemModalLabel">Modal title</h4>
-					</div>
-					<div class="modal-body">
-						<form class="form-horizontal">
-							<div class="form-group">
-								<label for="title" class="col-sm-2 control-label">标题</label>
-								<div class="col-sm-8">
-									<input type="text" class="form-control" id="title">
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="content" class="col-sm-2 control-label">内容</label>
-								<div class="col-sm-8">
-									<textarea class="form-control" id="content" rows="4"></textarea>
-								</div>
-							</div>
-						</form>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-primary" onclick="update()">保存</button>
-						<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-					</div>
-				</div>
-				<!-- /.modal-content -->
-			</div>
-			<!-- /.modal-dialog -->
-		</div>
-		<!-- /.modal -->
-
 	</div>
 </body>
 <script>
@@ -69,7 +29,7 @@
 		
 			function init() {
 		        $("#tobody").bootstrapTable({
-		            url: "<%=request.getContextPath()%>/findAllUsersPage",
+		            url: "<%=request.getContextPath()%>/findAllUsersPage1",
 								method : 'get',
 								striped : true, //是否显示行间隔色
 								cache : false, //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
@@ -132,52 +92,24 @@
 											title : '操作',
 											align : 'center',
 											formatter : function(value,row) {
-												return  '<button class="btn btn-success btn-sm" onclick="resetpwd(\''+ row.usersid+ '\')">重置密码</button>'+
-												        '<button class="btn btn-danger btn-sm" onclick="tobacklist(\''+ row.usersid+ '\')">拉黑</button>';
+												return  '<button class="btn btn-success btn-sm" onclick="recoveruser(\''+ row.usersid+ '\')">恢复</button>';
 											}
 										} ]
 							});
 		}
 	
 		
-	function updateWin() {
-
-	}
-
-	function tobacklist(usersid) {
-		layer.confirm('拉黑该用户？', {
-			btn : [ '确定', '取消' ], //按钮
-			icon : 0
-		}, function() { // 点击确定后执行的功能
-			$.ajax({
-				url:"<%=request.getContextPath()%>/tobacklist",
-				data:{
-					usersid:usersid
-				},
-				type:"post",
-					success:function(result){
-	            		if(result.code==1){
-	            			 layer.alert(result.sss, {icon: 1},function(){
-	            				 window.location.reload();
-	            			 });
-	            		}else{
-	            			 layer.alert(result.sss, {icon: 2},function(){
-	            				 window.location.reload();
-	            			 });
-	            		}
-	            	}
-			});
-		}, function() { // 点击取消后执行的函数
-		});
-	}
 	
-	function resetpwd(usersid) {
-		layer.confirm('重置密码？', {
+
+	
+	
+	function recoveruser(usersid) {
+		layer.confirm('恢复该用户？', {
 			btn : [ '确定', '取消' ], //按钮
 			icon : 0
 		}, function() { // 点击确定后执行的功能
 			$.ajax({
-				url:"<%=request.getContextPath()%>/resetpwd",
+				url:"<%=request.getContextPath()%>/recoverlist",
 				data:{
 					usersid:usersid
 				},
@@ -198,18 +130,5 @@
 		});
 	}
 
-/* 	function deleteNews() {
-		layer.confirm('确定要删除？', {
-			btn : [ '确定', '取消' ], //按钮
-			icon : 0
-		}, function() { // 点击确定后执行的功能
-			// 发送ajax请求
-			layer.alert("删除成功！", {
-				icon : 1
-			});
-		}, function() { // 点击取消后后执行的函数
-			$("#updatewin").modal("hide");
-		});
-	} */
 </script>
 </html>
